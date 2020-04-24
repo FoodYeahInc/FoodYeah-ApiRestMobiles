@@ -1,12 +1,20 @@
 package com.example.service;
 
-public interface CardService {
-    /*
-            DataCollection<CardDto> GetAll(int page, int take);
+import com.example.entity.Card;
 
-        CardDto GetById(int id);
-        CardDto Create(CardCreateDto model);
-        void Update(int id, CardUpdateDto model);
-        void Remove(int id);
-     */
+import antlr.collections.List;
+
+public interface CardService {
+    List<Card> findCardAll();
+
+    Card createCard();
+    Card updateCard();
+    void deleteCard();
+
+    Card getCard(int id);
+    // DataCollection<Card> GetAll(int page, int take);
+    // Card GetById(int id);
+    // Card Create(CardCreateDto model);
+    // void Update(int id, CardUpdateDto model);
+    // void Remove(int id);
 }

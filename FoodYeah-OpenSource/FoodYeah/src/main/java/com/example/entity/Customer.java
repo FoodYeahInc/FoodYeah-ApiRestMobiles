@@ -22,24 +22,24 @@ import javax.validation.constraints.Size;
 @Table(name="customers")
 public class Customer {
     //int CostumerId?
-    @ApiModelProperty(value="Usuario de la tarjeta", dataType="Long", position=1)
+    @ApiModelProperty(value="ID del usuario", dataType="int", position=1)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
-    @ApiModelProperty(value="Categoria del usuario", dataType="Customer", position=2)
+    @ApiModelProperty(value="Categoria del usuario", dataType="Customer_Category", position=2)
     @NotNull(message = "La categoría no puede ser vacia")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "costumer_category_id")
+    @JoinColumn(name = "CustomerCategoryId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private CustomerCategory costumerCategory;
+    private Customer_Category costumerCategory;
 
     @ApiModelProperty(value="El nombre del usuario", dataType="String", position=3)
     @NotEmpty(message = "El nombre no puede ser vacio ")
-    @Column(name = "costumer_name",nullable = false)
-    private String costumerName;
+    @Column(name = "CustomerName", nullable = false)
+    private String CustomerName;
 
     @ApiModelProperty(value="La edad del usuario", dataType="byte", position=4)
-    @Column(name = "costumer_age",nullable = true)
-    private byte costumerAge;
+    @Column(name = "CustomerAge", nullable = true)
+    private byte CustomerAge;
 }
