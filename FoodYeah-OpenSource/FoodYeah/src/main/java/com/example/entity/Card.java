@@ -19,6 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
 @AllArgsConstructor
 @Builder
 public class Card {
+    //Este id no sería cardId?
     @ApiModelProperty(value="ID de la terjeta", dataType="long",  example="1", position=1)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

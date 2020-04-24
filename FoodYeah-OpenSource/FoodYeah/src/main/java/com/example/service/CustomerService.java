@@ -14,5 +14,11 @@ public interface CustomerService {
     Customer deleteCustomer(Customer customer);
 
     Customer getCustomer(Long id);
-
+    /*
+        DataCollection<CostumerDto> GetAll(int page, int take);
+        CostumerDto GetById(int id);
+        CostumerDto Create(CostumerCreateDto model);
+        void Update(int id, CostumerUpdateDto model);
+        void Remove(int id);
+     */
 }

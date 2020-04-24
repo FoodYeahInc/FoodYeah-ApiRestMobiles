@@ -17,6 +17,7 @@ import java.util.List;
 @Entity
 @Table(name="customer_categories")
 public class CustomerCategory {
+
     @ApiModelProperty(value="Id de la categoria de usuarios", dataType="Long", position=1)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +25,11 @@ public class CustomerCategory {
 
     @ApiModelProperty(value="Nombre de la categoría", dataType="String", position=2)
     @NotEmpty(message = "El nombre no puede ser vacio")
-    @Column(name = "customer_name",nullable = false)
+    @Column(name = "customer_category_name",nullable = false)
     private String customerCategoryName;
     
     @ApiModelProperty(value="Descripción de la categoría", dataType="String", position=3)
     @NotEmpty(message = "La descripción no puede ser vacía")
-    @Column(name = "customer_name",nullable = false)
+    @Column(name = "customer_category_description",nullable = false)
     private String customerCategoryDescription;
 }

@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 @Builder
 @Table(name="customers")
 public class Customer {
-
+    //int CostumerId?
     @ApiModelProperty(value="Usuario de la tarjeta", dataType="Long", position=1)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
