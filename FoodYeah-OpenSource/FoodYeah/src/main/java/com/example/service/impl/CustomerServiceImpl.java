@@ -1,5 +1,6 @@
 package com.example.service.impl;
 
+import com.example.entity.Card;
 import com.example.entity.Customer;
 import com.example.repository.CustomerRepository;
 import com.example.service.CustomerService;
@@ -16,26 +17,44 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> findCustomerAll() {
-        return null;
+        return customerRepository.findAll();
     }
 
     @Override
     public Customer getCustomer(Long id) {
-        return null;
+        return customerRepository.findById(id).orElse(null);
     }
 
     @Override
     public Customer createCustomer(Customer customer) {
-        return null;
+        Customer customerDB = this.getCustomer(customer.getId())
+        if(customerDB!=null){
+            return customerDB;
+        }
+        customerDB.setState("CREATED");
+        customerDB=customerRepository.save(customer);
+        return customerDB;
     }
 
     @Override
     public Customer updateCustomer(Customer customer) {
-        return null;
+        Customer customerDB=this.getCustomer(customer.getId());
+        if(customerDB==null){
+            return null;
+        }
+        customerDB.setCustomerAge(customer.getCustomerAge());
+        customerDB.setCustomerName(customer.getCustomerName());
+        customerDB.setState("UPDATED");
+        return customerRepository.save(customerDB);
     }
 
     @Override
     public Customer deleteCustomer(Customer customer) {
-        return null;
+        Customer customerDB=this.getCustomer(customer.getId());
+        if(customerDB==null){
+            return null;
+        }
+        customer.setState("DELETED");
+        return customerRepository.save(customer);
     }
 }

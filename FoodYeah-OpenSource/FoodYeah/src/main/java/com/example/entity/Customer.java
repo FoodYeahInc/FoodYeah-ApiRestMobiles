@@ -42,6 +42,11 @@ public class Customer {
     @ApiModelProperty(value="La edad del usuario", dataType="byte", position=4)
     @Column(name = "CustomerAge", nullable = true)
     private byte CustomerAge;
+
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
+    @NotEmpty(message = "El costumer no sea crea ni se destruye sólo se transforma")
+    @Column(name = "CustomerState",nullable = false)
+    public String State;
     //public List<Card> Cards { get; set; }
     //public List<Order> Orders {get; set;}
 
