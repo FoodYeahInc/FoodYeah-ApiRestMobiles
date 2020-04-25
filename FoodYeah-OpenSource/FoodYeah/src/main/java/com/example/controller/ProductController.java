@@ -31,7 +31,7 @@ public class ProductController {
     public ResponseEntity<List<Product>> listProduct(@RequestParam(name="categoryId",required = false)Long categoryId){
         List<Product> products=new ArrayList<>();
         if(null==categoryId){
-            products=productService.listAllProduct();
+            products=productService.findProductAll();
             if(products.isEmpty()){
                 return ResponseEntity.noContent().build();
             }

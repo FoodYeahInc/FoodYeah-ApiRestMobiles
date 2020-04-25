@@ -19,10 +19,10 @@ import io.swagger.annotations.ApiModelProperty;
 @AllArgsConstructor
 @Builder
 public class Card {
-    @ApiModelProperty(value="ID de la tarjeta", dataType="int",  example="1", position=1)
+    @ApiModelProperty(value="ID de la tarjeta", dataType="Long",  example="1", position=1)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @ApiModelProperty(value="Usuario de la tarjeta", dataType="Customer", position=2)
     @NotNull(message = "El usuario no puede estar vacío")
@@ -53,4 +53,9 @@ public class Card {
     @NotEmpty(message = "El cvc o cvv de la tarjeta no deber ser vacio")
     @Column(name = "CardExpireDate",nullable = false)
     public String cardExpireDate;
+
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
+    @NotEmpty(message = "La tarjeta no sea crea ni se destruye sólo se transforma")
+    @Column(name = "CardState",nullable = false)
+    public String State;
 }

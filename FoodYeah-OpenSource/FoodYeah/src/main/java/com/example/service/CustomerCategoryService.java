@@ -1,15 +1,16 @@
 package com.example.service;
 
-import com.example.entity.CustomerCategory;
+import com.example.entity.Customer_Category;
 
 import java.util.List;
 
 public interface CustomerCategoryService {
-    List<CustomerCategory> findCustomerCategoryAll();
+    //Completed
+    List<Customer_Category> findCustomerCategoryAll();
+    Customer_Category getCustomerCategory(Long id);
 
-    CustomerCategory createCustomerCategory();
-    CustomerCategory updateCustomerCategory();
-    CustomerCategory deleteCustomerCategory();
+    Customer_Category createCustomerCategory(Customer_Category customer_category);
+    Customer_Category updateCustomerCategory(Customer_Category customer_category);
+    Customer_Category deleteCustomerCategory(Long id);
 
-    CustomerCategory getCustomerCategory(Long id);
 }

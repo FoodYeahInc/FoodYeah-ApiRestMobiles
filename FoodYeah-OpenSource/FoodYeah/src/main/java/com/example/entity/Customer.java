@@ -22,10 +22,10 @@ import javax.validation.constraints.Size;
 @Table(name="customers")
 public class Customer {
     //int CostumerId?
-    @ApiModelProperty(value="ID del usuario", dataType="int", position=1)
+    @ApiModelProperty(value="ID del usuario", dataType="Long", position=1)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @ApiModelProperty(value="Categoria del usuario", dataType="Customer_Category", position=2)
     @NotNull(message = "La categoría no puede ser vacia")
@@ -42,4 +42,7 @@ public class Customer {
     @ApiModelProperty(value="La edad del usuario", dataType="byte", position=4)
     @Column(name = "CustomerAge", nullable = true)
     private byte CustomerAge;
+    //public List<Card> Cards { get; set; }
+    //public List<Order> Orders {get; set;}
+
 }

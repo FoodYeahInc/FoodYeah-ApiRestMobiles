@@ -38,4 +38,5 @@ public class Product {
     @ApiModelProperty(value="Descripción del producto", dataType="float", example="69.99", position=4)
     @Column(name = "ProductPrice",nullable = false)
     private float productPrice;
+    //Sellday?
 }
