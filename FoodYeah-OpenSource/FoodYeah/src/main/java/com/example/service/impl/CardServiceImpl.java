@@ -50,12 +50,12 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Card deleteCard(Card card) {
-        Card cardDB=this.getCard(card.getId());
+    public Card deleteCard(Long id) {
+        Card cardDB=this.getCard(id);
         if(cardDB==null){
             return null;
         }
-        card.setState("DELETED");
-        return cardRepository.save(card);
+        cardDB.setState("DELETED");
+        return cardRepository.save(cardDB);
     }
 }

@@ -12,10 +12,10 @@ import io.swagger.annotations.ApiModelProperty;
 @Data
 @Table(name = "product_categories")
 public class Product_Category {
-    @ApiModelProperty(value="ID de la categoría de productos", dataType="int", position=1)
+    @ApiModelProperty(value="ID de la categoría de productos", dataType="Long", position=1)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @ApiModelProperty(value="Nombre de la categoría", dataType="String", position=2)
     @NotEmpty(message = "El nombre no puede ser vacío")
@@ -26,4 +26,9 @@ public class Product_Category {
     @NotEmpty(message = "La descripción no puede ser vacía")
     @Column(name = "ProductCategoryDescription",nullable = false)
     private String productCategoryDescription;
+
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
+    @NotEmpty(message = "La Order no sea crea ni se destruye sólo se transforma")
+    @Column(name = "ProductCategoryState",nullable = false)
+    public String State;
 }

@@ -18,10 +18,10 @@ import java.util.Date;
 @Data
 @NoArgsConstructor @AllArgsConstructor @Builder
 public class Product {
-    @ApiModelProperty(value="ID del Producto", dataType="int",  example="1", position=1)
+    @ApiModelProperty(value="ID del Producto", dataType="Long",  example="1", position=1)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @ApiModelProperty(value="Categoría del producto", dataType="Categoria", position=2)
     @NotNull(message = "La categoria no puede ser vacia")
@@ -38,5 +38,10 @@ public class Product {
     @ApiModelProperty(value="Descripción del producto", dataType="float", example="69.99", position=4)
     @Column(name = "ProductPrice",nullable = false)
     private float productPrice;
+
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
+    @NotEmpty(message = "La Order no sea crea ni se destruye sólo se transforma")
+    @Column(name = "ProductState",nullable = false)
+    public String State;
     //Sellday?
 }

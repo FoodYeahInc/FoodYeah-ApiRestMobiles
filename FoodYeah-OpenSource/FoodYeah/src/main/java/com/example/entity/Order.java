@@ -21,10 +21,10 @@ import io.swagger.annotations.ApiModelProperty;
 @Table(name="orders")
 public class Order{
 
-    @ApiModelProperty(value="ID de la orden", dataType="int", position=1)
+    @ApiModelProperty(value="ID de la orden", dataType="Long", position=1)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @ApiModelProperty(value="El usuario de la orden", dataType="Customer", position=2)
     @NotNull(message = "El usuario de la orden no puede estar vacío")
@@ -47,4 +47,9 @@ public class Order{
     @NotEmpty(message = "El precio total no puede ser vacío")
     @Column(name = "TotalPrice", nullable = false)
     private float totalPrice;
+
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
+    @NotEmpty(message = "La Order no sea crea ni se destruye sólo se transforma")
+    @Column(name = "OrderState",nullable = false)
+    public String State;
 }

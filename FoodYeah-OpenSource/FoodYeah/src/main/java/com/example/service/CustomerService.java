@@ -10,6 +10,6 @@ public interface CustomerService {
 
     Customer createCustomer(Customer customer);
     Customer updateCustomer(Customer customer);
-    Customer deleteCustomer(Customer customer);
+    Customer deleteCustomer(Long id);
 
 }

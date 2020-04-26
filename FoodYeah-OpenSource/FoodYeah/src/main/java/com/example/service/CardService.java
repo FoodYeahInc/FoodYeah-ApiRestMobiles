@@ -10,6 +10,6 @@ public interface CardService {
 
     Card createCard(Card card);
     Card updateCard(Card card);
-    Card deleteCard(Card card);
+    Card deleteCard(Long id);
 
 }

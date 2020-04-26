@@ -1,7 +1,7 @@
 package com.example.service.impl;
 
-import com.example.entity.Category;
 import com.example.entity.Product;
+import com.example.entity.Product_Category;
 import com.example.repository.ProductRepository;
 import com.example.service.ProductService;
 
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-
+    @Autowired
     private final ProductRepository productRepository;
 
     public ProductServiceImpl(ProductRepository productRepository) {
@@ -32,11 +32,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product createProduct(Product product) {
-        product.setStatus("CREATED");
-        product.setCreateAt(new Date());
+    public List<Product> findByCategory(Product_Category category) {
+        return productRepository.findByCategory(category);
+    }
 
-        return productRepository.save(product);
+    @Override
+    public Product createProduct(Product product) {
+        Product productDB=this.getProduct(product.getId());
+        if(productDB!=null){
+            return productDB;
+        }
+        product.setState("CREATED");
+       //product.setCreateAt(new Date()); ->Revisar bien esta función para establecer fechas
+        productDB=productRepository.save(product);
+        return productDB;
     }
 
     @Override
@@ -45,12 +54,13 @@ public class ProductServiceImpl implements ProductService {
         if(productDB==null){
             return null;
         }
-        productDB.setName(product.getName());
-        productDB.setDescription(product.getDescription());
         productDB.setCategory(product.getCategory());
-        productDB.setPrice(product.getPrice());
+        productDB.setProductName(product.getProductName());
+        productDB.setProductPrice(product.getProductPrice());
+        productDB.setState("UPDATED");
 
-        return productRepository.save(productDB);
+        productDB=productRepository.save(product);
+        return productDB;
     }
 
     @Override
@@ -59,24 +69,8 @@ public class ProductServiceImpl implements ProductService {
         if(productDB==null){
             return null;
         }
-        productDB.setStatus("DELETE");
-
+        productDB.setState("DELETE");
         return productRepository.save(productDB);
     }
 
-    @Override
-    public List<Product> findByCategory(Category category) {
-        return productRepository.findByCategory(category);
-    }
-
-    @Override
-    public Product updateStock(Long id, Double quantity) {
-        Product productDB=this.getProduct(id);
-        if(productDB==null){
-            return null;
-        }
-        Double stock=productDB.getStock()+quantity;
-        productDB.setStock(stock);
-        return productRepository.save(productDB);
-    }
 }
