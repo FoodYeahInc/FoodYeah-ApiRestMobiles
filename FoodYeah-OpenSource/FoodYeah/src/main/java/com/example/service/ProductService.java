@@ -4,7 +4,6 @@ import com.example.entity.Product;
 import com.example.entity.Product_Category;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ProductService {
     List<Product> findProductAll();

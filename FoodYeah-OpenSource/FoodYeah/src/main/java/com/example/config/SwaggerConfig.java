@@ -29,9 +29,9 @@ public class SwaggerConfig {
 
         return new ApiInfoBuilder()
                 .title("API de ejemplo")
-                .description("API de ejemplo del curso API REST con Spring Boot de hampcode")
+                .description("API de FoodYeah! de PaulSoft Company")
                 .version("1.0")
-                .contact(new Contact("Henry Antonio Mendoza Puerta", "https://www.youtube.com/hampcode", ""))
+                .contact(new Contact("Paulsoft Company", "", ""))
                 .build();
     }
 }

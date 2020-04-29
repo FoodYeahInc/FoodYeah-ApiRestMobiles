@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.util.Date;
 
 @Entity
@@ -39,9 +38,14 @@ public class Product {
     @Column(name = "ProductPrice",nullable = false)
     private float productPrice;
 
-    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=6)
     @NotEmpty(message = "La Order no sea crea ni se destruye sólo se transforma")
     @Column(name = "ProductState",nullable = false)
     public String State;
-    //Sellday?
+
+    @ApiModelProperty(value="dia del menu de venta", dataType="Date",  example="CREATED", position=5)
+    @NotEmpty(message = "La Order no sea crea ni se destruye sólo se transforma")
+    @Column(name = "ProductSellday",nullable = false)
+    public Date Sellday;
+    //TODO: Sellday
 }

@@ -8,7 +8,6 @@ import com.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -58,9 +57,7 @@ public class ProductServiceImpl implements ProductService {
         productDB.setProductName(product.getProductName());
         productDB.setProductPrice(product.getProductPrice());
         productDB.setState("UPDATED");
-
-        productDB=productRepository.save(product);
-        return productDB;
+        return productRepository.save(productDB);
     }
 
     @Override

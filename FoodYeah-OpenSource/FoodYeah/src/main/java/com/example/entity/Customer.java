@@ -47,6 +47,7 @@ public class Customer {
     @NotEmpty(message = "El costumer no sea crea ni se destruye sólo se transforma")
     @Column(name = "CustomerState",nullable = false)
     public String State;
+
     //public List<Card> Cards { get; set; }
     //public List<Order> Orders {get; set;}
 
