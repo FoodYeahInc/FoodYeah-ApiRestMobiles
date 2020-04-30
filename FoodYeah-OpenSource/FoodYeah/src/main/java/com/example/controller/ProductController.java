@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import com.example.entity.Category;
 import com.example.entity.Product;
 import com.example.service.ProductService;
 import com.example.util.ErrorMessage;
@@ -34,11 +33,6 @@ public class ProductController {
             products=productService.findProductAll();
             if(products.isEmpty()){
                 return ResponseEntity.noContent().build();
-            }
-        }else{
-            products=productService.findByCategory(Category.builder().id(categoryId).build());
-            if(products.isEmpty()){
-                return ResponseEntity.notFound().build();
             }
         }
         return ResponseEntity.ok(products);
@@ -87,13 +81,13 @@ public class ProductController {
         return ResponseEntity.ok(productDelete);
     }
 
-    @GetMapping("/{id}/stock")
+    /*@GetMapping("/{id}/stock")
     public ResponseEntity<Product> updateStockProduct(@PathVariable("id") Long id,
                                                       @RequestParam(name="quantity", required = true) Double quantity){
-        Product product=productService.updateStock(id,quantity);
+        Product product=productService(id,quantity);
         if(product==null){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(product);
-    }
+    }*/
 }

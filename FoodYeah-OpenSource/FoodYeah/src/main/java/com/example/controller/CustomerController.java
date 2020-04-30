@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.entity.Customer;
-import com.example.entity.Region;
 import com.example.service.CustomerService;
 import com.example.util.Message;
 import lombok.extern.slf4j.Slf4j;
@@ -33,14 +32,6 @@ public class CustomerController {
             customers = customerService.findCustomerAll();
             if (customers.isEmpty()) {
                 return ResponseEntity.noContent().build();
-            }
-        }else{
-            Region Region= new Region();
-            Region.setId(regionId);
-            customers = customerService.findCustomersByRegion(Region);
-            if ( null == customers ) {
-                log.error("Customers with Region id {} not found.", regionId);
-                return  ResponseEntity.notFound().build();
             }
         }
         return  ResponseEntity.ok(customers);
@@ -94,7 +85,7 @@ public class CustomerController {
             log.error("Unable to delete. Customer with id {} not found.", id);
             return  ResponseEntity.notFound().build();
         }
-        customer = customerService.deleteCustomer(customer);
+        customer = customerService.deleteCustomer(id);
         return  ResponseEntity.ok(customer);
     }
 
