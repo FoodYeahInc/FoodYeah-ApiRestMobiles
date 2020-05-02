@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import com.example.entity.Customer;
+import com.example.entity.CustomerCategory;
 import com.example.repository.CustomerRepository;
 import com.example.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer getCustomer(Long id) {
         return customerRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Customer> findByCustomerCategory(CustomerCategory category) {
+        return customerRepository.findByCustomerCategory(category);
     }
 
     @Override

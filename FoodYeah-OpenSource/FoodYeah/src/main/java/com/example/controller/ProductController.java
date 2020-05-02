@@ -44,6 +44,7 @@ public class ProductController {
             @ApiResponse(code=404, message="Not Found", response= ErrorMessage.class),
             @ApiResponse(code=500, message="Internal Server Error", response=ErrorMessage.class)
     })
+
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable("id") Long id){
         Product product=productService.getProduct(id);

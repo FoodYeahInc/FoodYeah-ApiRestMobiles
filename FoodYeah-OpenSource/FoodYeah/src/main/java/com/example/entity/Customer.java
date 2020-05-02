@@ -9,10 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Data
 @Entity
@@ -32,7 +30,7 @@ public class Customer {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CustomerCategoryId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Customer_Category costumerCategory;
+    private CustomerCategory customerCategory;
 
     @ApiModelProperty(value="El nombre del usuario", dataType="String", position=3)
     @NotEmpty(message = "El nombre no puede ser vacio ")

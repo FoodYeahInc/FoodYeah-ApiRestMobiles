@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import com.example.entity.Card;
+import com.example.entity.Customer;
 import com.example.repository.CardRepository;
 import com.example.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Service
 public class CardServiceImpl implements CardService {
+
     @Autowired
     private CardRepository cardRepository;
 
@@ -21,6 +23,11 @@ public class CardServiceImpl implements CardService {
     @Override
     public Card getCard(Long id) {
         return cardRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Card> findByCustomer(Customer costumer) {
+        return cardRepository.findByCustomer(costumer);
     }
 
     @Override

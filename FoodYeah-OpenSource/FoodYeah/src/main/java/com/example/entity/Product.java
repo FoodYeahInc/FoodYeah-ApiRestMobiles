@@ -27,7 +27,7 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CategoryId")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Product_Category category;
+    private ProductCategory category;
     
     @ApiModelProperty(value="Nombre del producto", dataType="String", example="Lomo saltado", position=3)
     @NotEmpty(message = "El nombre no deber ser vacio")

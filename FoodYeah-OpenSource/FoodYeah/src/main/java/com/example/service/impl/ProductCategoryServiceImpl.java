@@ -1,6 +1,6 @@
 package com.example.service.impl;
 
-import com.example.entity.Product_Category;
+import com.example.entity.ProductCategory;
 import com.example.repository.ProductCategoryRepository;
 import com.example.service.ProductCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +14,18 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     private ProductCategoryRepository productCategoryRepository;
 
     @Override
-    public List<Product_Category> findProduct_CategoryAll() {
+    public List<ProductCategory> findProduct_CategoryAll() {
         return productCategoryRepository.findAll();
     }
 
     @Override
-    public Product_Category getProduct_Category(Long id) {
+    public ProductCategory getProduct_Category(Long id) {
         return productCategoryRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Product_Category createProduct_Category(Product_Category product_category) {
-        Product_Category product_categoryDB=this.getProduct_Category(product_category.getId());
+    public ProductCategory createProduct_Category(ProductCategory product_category) {
+        ProductCategory product_categoryDB=this.getProduct_Category(product_category.getId());
         if(product_categoryDB!=null){
             return product_categoryDB;
         }
@@ -35,8 +35,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     }
 
     @Override
-    public Product_Category updateProduct_Category(Product_Category product_category) {
-        Product_Category product_categoryDB=this.getProduct_Category(product_category.getId());
+    public ProductCategory updateProduct_Category(ProductCategory product_category) {
+        ProductCategory product_categoryDB=this.getProduct_Category(product_category.getId());
         if(product_categoryDB==null){
             return null;
         }
@@ -48,8 +48,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     }
 
     @Override
-    public Product_Category deleteProduct_Category(Long id) {
-        Product_Category product_categoryDB=this.getProduct_Category(id);
+    public ProductCategory deleteProduct_Category(Long id) {
+        ProductCategory product_categoryDB=this.getProduct_Category(id);
         if(product_categoryDB==null){
             return null;
         }

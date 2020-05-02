@@ -1,7 +1,7 @@
 package com.example.service.impl;
 
 import com.example.entity.Product;
-import com.example.entity.Product_Category;
+import com.example.entity.ProductCategory;
 import com.example.repository.ProductRepository;
 import com.example.service.ProductService;
 
@@ -31,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findByCategory(Product_Category category) {
+    public List<Product> findByCategory(ProductCategory category) {
         return productRepository.findByCategory(category);
     }
 

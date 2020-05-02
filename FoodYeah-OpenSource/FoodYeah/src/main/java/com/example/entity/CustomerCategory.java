@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name="customer_categories")
-public class Customer_Category {
+public class CustomerCategory {
 
     @ApiModelProperty(value="ID de la categoria de usuarios", dataType="Long", position=1)
     @Id

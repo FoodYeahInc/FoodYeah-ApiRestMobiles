@@ -1,14 +1,14 @@
 package com.example.service;
 
 import com.example.entity.Product;
-import com.example.entity.Product_Category;
+import com.example.entity.ProductCategory;
 
 import java.util.List;
 
 public interface ProductService {
     List<Product> findProductAll();
     Product getProduct(Long id);
-    List<Product> findByCategory(Product_Category category);
+    List<Product> findByCategory(ProductCategory category);
     /*
     TODO: Implementar Sellday:
     List<Product> findBySellday(string Sellday);
