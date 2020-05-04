@@ -27,7 +27,7 @@ public class ProductController {
 
 
     @GetMapping
-    public ResponseEntity<List<Product>> listProduct(@RequestParam(name="categoryId",required = false)Long categoryId){
+    public ResponseEntity<List<Product>> listProduct(@RequestParam(name="productId",required = false)Long categoryId){
         List<Product> products=new ArrayList<>();
         if(null==categoryId){
             products=productService.findProductAll();

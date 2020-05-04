@@ -30,10 +30,10 @@ public class CardController {
     // -------------------Retrieve All Cards--------------------------------------------
 
     @GetMapping
-    public   ResponseEntity <List<Card>> listAllCards(@RequestParam(name = "tarjectId", required = false) Long tarjectId){
+    public   ResponseEntity <List<Card>> listAllCards(@RequestParam(name = "cardId", required = false) Long cardId){
         List<Card> cards = new ArrayList<>();
 
-        if(null==tarjectId){
+        if(null==cardId){
                 cards = cardService.findCardAll();
                 if(cards.isEmpty()){
                     return ResponseEntity.noContent().build();
@@ -48,13 +48,13 @@ public class CardController {
     // -------------------Retrieve Single Card------------------------------------------
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getCard(@PathVariable("id") long id){
+    public ResponseEntity<Card> getCard(@PathVariable("id") long id){
         log.info("Fetching Card with Id {}", id);
 
         Card card = cardService.getCard(id);
 
         if( null == card){
-            log.error("Customer with id {} not found.",id);
+            log.error("Card with id {} not found.",id);
             return ResponseEntity.notFound().build();
 
         }
@@ -65,6 +65,7 @@ public class CardController {
 
      // -------------------Create a Card-------------------------------------------
 
+    @PostMapping
     public ResponseEntity<Card> createCard(@Valid @RequestBody Card card, BindingResult result){
         log.info("Creating Card : {}", card);
         if ( result.hasErrors()){
@@ -73,20 +74,18 @@ public class CardController {
         }
         Card cardDB = cardService.createCard(card);
        return  ResponseEntity.status(HttpStatus.CREATED).body(cardDB);
-
-
     }
 
 
     // ------------------- Update a Card ------------------------------------------------
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<?> updateCard(@PathVariable("id") long id, @RequestBody Card card){
+    public ResponseEntity<Card> updateCard(@PathVariable("id") long id, @RequestBody Card card){
         log.info("Updating Card with id {}",id);
         Card currentCard = cardService.getCard(id);
 
         if(null == currentCard){
-            log.error("Unable to update Customer with id {} not founded",id);
+            log.error("Unable to update Card with id {} not founded",id);
             return ResponseEntity.notFound().build();
         }
 
@@ -94,6 +93,18 @@ public class CardController {
         currentCard = cardService.updateCard(card);
         return ResponseEntity.ok(currentCard);
 
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Card> deleteCard(@PathVariable("id")long id){
+        log.info("Fetching & Deleting Card with id {}", id);
+        Card card = cardService.getCard(id);
+        if(null == card){
+            log.error("Unable to delete. Card with id {} not found.", id);
+            return ResponseEntity.notFound().build();
+        }
+        card = cardService.deleteCard(id);
+        return ResponseEntity.ok(card);
     }
 
 

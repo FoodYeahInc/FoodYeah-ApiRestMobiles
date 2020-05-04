@@ -26,9 +26,9 @@ public class CustomerController {
     // -------------------Retrieve All Customers--------------------------------------------
 
     @GetMapping
-    public ResponseEntity<List<Customer>> listAllCustomers(@RequestParam(name = "regionId" , required = false) Long regionId ) {
+    public ResponseEntity<List<Customer>> listAllCustomers(@RequestParam(name = "customerId" , required = false) Long customerId ) {
         List<Customer> customers =  new ArrayList<>();
-        if (null ==  regionId) {
+        if (null ==  customerId) {
             customers = customerService.findCustomerAll();
             if (customers.isEmpty()) {
                 return ResponseEntity.noContent().build();
@@ -65,7 +65,7 @@ public class CustomerController {
     // ------------------- Update a Customer ------------------------------------------------
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<?> updateCustomer(@PathVariable("id") long id, @RequestBody Customer customer) {
+    public ResponseEntity<Customer> updateCustomer(@PathVariable("id") long id, @RequestBody Customer customer) {
         log.info("Updating Customer with id {}", id);
         Customer currentCustomer = customerService.getCustomer(id);
         if ( null == currentCustomer ) {
