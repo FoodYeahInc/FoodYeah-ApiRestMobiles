@@ -36,7 +36,7 @@ public class CustomerServiceImpl implements CustomerService {
         if(customerDB!=null){
             return customerDB;
         }
-        customerDB.setState("CREATED");
+        customer.setState("CREATED");
         customerDB=customerRepository.save(customer);
         return customerDB;
     }

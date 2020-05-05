@@ -36,7 +36,7 @@ public class CardServiceImpl implements CardService {
         if(cardDB!=null){
             return cardDB;
         }
-        cardDB.setState("CREATED");
+        card.setState("CREATED");
         cardDB=cardRepository.save(card);
         return cardDB;
     }

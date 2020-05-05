@@ -3,7 +3,10 @@ package com.example.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -13,9 +16,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
 @Entity
-@Table(name="customer_categories")
+@Table(name = "customer_categories")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class CustomerCategory {
 
     @ApiModelProperty(value="ID de la categoria de usuarios", dataType="Long", position=1)
@@ -25,16 +31,16 @@ public class CustomerCategory {
 
     @ApiModelProperty(value="Nombre de la categoría", dataType="String", position=2)
     @NotEmpty(message = "El nombre no puede ser vacio")
-    @Column(name = "CustomerCategoryName",nullable = false)
+    @Column(name = "customer_category_name",nullable = false)
     private String customerCategoryName;
     
     @ApiModelProperty(value="Descripción de la categoría", dataType="String", position=3)
     @NotEmpty(message = "La descripción no puede ser vacía")
-    @Column(name = "CustomerCategoryDescription",nullable = false)
+    @Column(name = "customer_category_description",nullable = false)
     private String customerCategoryDescription;
 
-    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=4)
     @NotEmpty(message = "El costumer no sea crea ni se destruye sólo se transforma")
-    @Column(name = "CustomerCategoryState",nullable = false)
-    public String State;
+    @Column(name = "customer_category_state",nullable = false)
+    public String state;
 }

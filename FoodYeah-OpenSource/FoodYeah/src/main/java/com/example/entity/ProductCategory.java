@@ -19,16 +19,16 @@ public class ProductCategory {
 
     @ApiModelProperty(value="Nombre de la categoría", dataType="String", position=2)
     @NotEmpty(message = "El nombre no puede ser vacío")
-    @Column(name = "ProductCategoryName",nullable = false)
+    @Column(name = "product_category_name",nullable = false)
     private String productCategoryName;
     
     @ApiModelProperty(value="Descripción de la categoría", dataType="String", position=3)
     @NotEmpty(message = "La descripción no puede ser vacía")
-    @Column(name = "ProductCategoryDescription",nullable = false)
+    @Column(name = "product_category_description",nullable = false)
     private String productCategoryDescription;
 
     @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
     @NotEmpty(message = "La Order no sea crea ni se destruye sólo se transforma")
-    @Column(name = "ProductCategoryState",nullable = false)
-    public String State;
+    @Column(name = "product_category_state",nullable = false)
+    public String state;
 }

@@ -29,7 +29,7 @@ public class CustomerCategoryServiceImpl implements CustomerCategoryService {
         if(CustomerCategoryDB!=null){
             return CustomerCategoryDB;
         }
-        CustomerCategoryDB.setState("CREATED");
+        customer_category.setState("CREATED");
         CustomerCategoryDB=customerCategoryRepository.save(customer_category);
         return CustomerCategoryDB;
     }

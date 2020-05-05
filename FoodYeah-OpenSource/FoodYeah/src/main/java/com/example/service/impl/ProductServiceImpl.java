@@ -8,6 +8,8 @@ import com.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 
@@ -42,7 +44,6 @@ public class ProductServiceImpl implements ProductService {
             return productDB;
         }
         product.setState("CREATED");
-       //product.setCreateAt(new Date()); ->Revisar bien esta función para establecer fechas
         productDB=productRepository.save(product);
         return productDB;
     }

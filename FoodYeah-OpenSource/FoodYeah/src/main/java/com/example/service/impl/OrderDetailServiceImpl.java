@@ -31,7 +31,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         if(orderDetailDB!=null){
             return orderDetailDB;
         }
-        orderDetailDB.setState("CREATED");
+        orderDetail.setState("CREATED");
         orderDetailDB=orderDetailRepository.save(orderDetail);
         return orderDetailDB;
     }

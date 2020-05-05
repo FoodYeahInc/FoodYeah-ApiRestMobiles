@@ -29,7 +29,7 @@ public class Order{
     @ApiModelProperty(value="El usuario de la orden", dataType="Customer", position=2)
     @NotNull(message = "El usuario de la orden no puede estar vacío")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CustomerId")
+    @JoinColumn(name = "customer_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Customer costumer;
 
@@ -45,11 +45,11 @@ public class Order{
 
     @ApiModelProperty(value="El precio total de la orden", dataType="float", position=4)
     @NotEmpty(message = "El precio total no puede ser vacío")
-    @Column(name = "TotalPrice", nullable = false)
+    @Column(name = "total_price", nullable = false)
     private float totalPrice;
 
     @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
     @NotEmpty(message = "La Order no sea crea ni se destruye sólo se transforma")
-    @Column(name = "OrderState",nullable = false)
-    public String State;
+    @Column(name = "order_state",nullable = false)
+    public String state;
 }

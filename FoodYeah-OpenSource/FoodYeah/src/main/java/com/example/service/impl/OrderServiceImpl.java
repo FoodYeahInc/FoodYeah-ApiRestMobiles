@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
         if(orderDB!=null){
             return orderDB;
         }
-        orderDB.setState("CREATED");
+        order.setState("CREATED");
         orderDB=orderRepository.save(order);
         return orderDB;
     }

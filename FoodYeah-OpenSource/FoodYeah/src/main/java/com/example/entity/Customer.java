@@ -19,7 +19,6 @@ import javax.validation.constraints.NotNull;
 @Builder
 @Table(name="customers")
 public class Customer {
-    //int CostumerId?
     @ApiModelProperty(value="ID del usuario", dataType="Long", position=1)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,23 +27,23 @@ public class Customer {
     @ApiModelProperty(value="Categoria del usuario", dataType="Customer_Category", position=2)
     @NotNull(message = "La categoría no puede ser vacia")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CustomerCategoryId")
+    @JoinColumn(name = "customer_category_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private CustomerCategory customerCategory;
 
     @ApiModelProperty(value="El nombre del usuario", dataType="String", position=3)
     @NotEmpty(message = "El nombre no puede ser vacio ")
-    @Column(name = "CustomerName", nullable = false)
+    @Column(name = "customer_name", nullable = false)
     private String CustomerName;
 
     @ApiModelProperty(value="La edad del usuario", dataType="byte", position=4)
-    @Column(name = "CustomerAge", nullable = true)
+    @Column(name = "customer_age", nullable = true)
     private byte CustomerAge;
 
     @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
     @NotEmpty(message = "El costumer no sea crea ni se destruye sólo se transforma")
-    @Column(name = "CustomerState",nullable = false)
-    public String State;
+    @Column(name = "customer_state",nullable = false)
+    public String state;
 
     //public List<Card> Cards { get; set; }
     //public List<Order> Orders {get; set;}

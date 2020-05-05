@@ -29,7 +29,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         if(product_categoryDB!=null){
             return product_categoryDB;
         }
-        product_categoryDB.setState("CREATED");
+        product_category.setState("CREATED");
         product_categoryDB=productCategoryRepository.save(product_category);
         return product_categoryDB;
     }
