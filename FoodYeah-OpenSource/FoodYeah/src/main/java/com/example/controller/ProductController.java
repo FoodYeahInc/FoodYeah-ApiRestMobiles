@@ -45,6 +45,12 @@ public class ProductController {
             @ApiResponse(code=500, message="Internal Server Error", response=ErrorMessage.class)
     })
 
+    @GetMapping("/day/{sellday}")
+    public ResponseEntity<List<Product>>findByDay(@PathVariable("sellday")byte sellday){
+        
+        List<Product>products = productService.findBySellday(sellday);
+        return ResponseEntity.ok(products);
+    }
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable("id") Long id){
         Product product=productService.getProduct(id);
@@ -78,6 +84,8 @@ public class ProductController {
         }
         return ResponseEntity.ok(productDelete);
     }
+
+
 
     /*@GetMapping("/{id}/stock")
     public ResponseEntity<Product> updateStockProduct(@PathVariable("id") Long id,

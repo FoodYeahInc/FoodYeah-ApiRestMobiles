@@ -38,6 +38,10 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findByCategory(category);
     }
 
+    @Override
+    public List<Product> findBySellday(int Sellday) {
+        return productRepository.findBySellDay(Sellday);
+    }
 
 
     @Transactional
