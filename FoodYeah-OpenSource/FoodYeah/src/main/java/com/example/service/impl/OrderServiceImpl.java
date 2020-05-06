@@ -25,12 +25,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order createOrder(Order order) {
-        Order orderDB=this.getOrder(order.getId());
-        if(orderDB!=null){
-            return orderDB;
-        }
+
         order.setState("CREATED");
-        orderDB=orderRepository.save(order);
-        return orderDB;
+        return orderRepository.save(order);
     }
 }

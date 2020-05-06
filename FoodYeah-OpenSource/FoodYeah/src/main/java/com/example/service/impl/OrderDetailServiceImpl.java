@@ -27,13 +27,10 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     @Override
     public OrderDetail createOrderDetail(OrderDetail orderDetail) {
-        OrderDetail orderDetailDB=this.getOrderDetail(orderDetail.getId());
-        if(orderDetailDB!=null){
-            return orderDetailDB;
-        }
+
         orderDetail.setState("CREATED");
-        orderDetailDB=orderDetailRepository.save(orderDetail);
-        return orderDetailDB;
+     return orderDetailRepository.save(orderDetail);
+
     }
 
     @Override

@@ -32,13 +32,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer createCustomer(Customer customer) {
-        Customer customerDB = this.getCustomer(customer.getId());
-        if(customerDB!=null){
-            return customerDB;
-        }
+
         customer.setState("CREATED");
-        customerDB=customerRepository.save(customer);
-        return customerDB;
+        return customerRepository.save(customer);
+
     }
 
     @Override

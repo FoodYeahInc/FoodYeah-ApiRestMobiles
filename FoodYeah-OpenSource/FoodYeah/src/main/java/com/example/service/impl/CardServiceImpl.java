@@ -32,13 +32,10 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public Card createCard(Card card) {
-        Card cardDB=this.getCard(card.getId());
-        if(cardDB!=null){
-            return cardDB;
-        }
+
         card.setState("CREATED");
-        cardDB=cardRepository.save(card);
-        return cardDB;
+        return cardRepository.save(card);
+
     }
 
     @Override
