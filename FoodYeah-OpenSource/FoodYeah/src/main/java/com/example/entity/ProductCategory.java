@@ -1,5 +1,7 @@
 package com.example.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,16 +9,16 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Data
 @Table(name = "product_categories")
+@NoArgsConstructor @AllArgsConstructor
+@Builder
 public class ProductCategory {
-
-
-
     @ApiModelProperty(value="ID de la categoría de productos", dataType="Long", position=1)
     @Id
     @Column(name="category_id",nullable = false)

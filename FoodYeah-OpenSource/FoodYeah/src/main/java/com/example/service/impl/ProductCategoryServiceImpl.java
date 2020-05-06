@@ -12,7 +12,6 @@ import java.util.List;
 public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Autowired
     private ProductCategoryRepository productCategoryRepository;
-    private Long generatedid=0l;
     @Override
     public List<ProductCategory> findProduct_CategoryAll() {
         return productCategoryRepository.findAll();
@@ -25,15 +24,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public ProductCategory createProduct_Category(ProductCategory product_category) {
-<<<<<<< HEAD
         product_category.setState("CREATED");
       return productCategoryRepository.save(product_category);
-
-=======
-        product_category.setId(generatedid++);
-        product_category.setState("CREATED");
-        return productCategoryRepository.save(product_category);
->>>>>>> 8a30a2594e665b9e2fd1ff4cc3d9ef43a1f466eb
     }
 
     @Override
