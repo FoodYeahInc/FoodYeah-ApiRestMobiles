@@ -44,7 +44,7 @@ public class Order{
     private String time;
 
     @ApiModelProperty(value="El precio total de la orden", dataType="float", position=4)
-    @NotEmpty(message = "El precio total no puede ser vacío")
+    @NotNull(message = "El precio total no puede ser vacío")
     @Column(name = "total_price", nullable = false)
     private float totalPrice;
 

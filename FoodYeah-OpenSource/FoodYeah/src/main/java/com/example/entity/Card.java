@@ -22,6 +22,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class Card {
     @ApiModelProperty(value="ID de la tarjeta", dataType="Long",  example="1", position=1)
     @Id
+    @Column(name = "card_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -33,16 +34,16 @@ public class Card {
     public Customer customer;
 
     @ApiModelProperty(value="Numero de la tarjeta", dataType="int",  example="1234567898765432", position=3)
-    @NotEmpty(message = "El numero de la tarjeta no deber ser vacio")
+    @NotNull(message = "El numero de la tarjeta no deber ser vacio")
     public int cardNumber;
 
     @ApiModelProperty(value="Tipo de tarjeta", dataType="boolean",  example="1", position=4)
-    @NotEmpty(message = "El tipo de tarjeta no deber ser vacio")
+    @NotNull(message = "El tipo de tarjeta no deber ser vacio")
     @Column(name = "card_type",nullable = false)
     public boolean cardType;
 
     @ApiModelProperty(value="El cvv o cvc de la tarjeta", dataType="byte",  example="1234", position=5)
-    @NotEmpty(message = "El cvc o cvv de la tarjeta no deber ser vacio")
+    @NotNull(message = "El cvc o cvv de la tarjeta no deber ser vacio")
     @Column(name = "card_cvi",nullable = false)
     public byte cardCvi;
 

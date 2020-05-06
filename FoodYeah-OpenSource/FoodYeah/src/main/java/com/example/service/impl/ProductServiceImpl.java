@@ -7,6 +7,7 @@ import com.example.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.Date;
@@ -37,15 +38,14 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findByCategory(category);
     }
 
+
+
+    @Transactional
     @Override
     public Product createProduct(Product product) {
-        Product productDB=this.getProduct(product.getId());
-        if(productDB!=null){
-            return productDB;
-        }
+
         product.setState("CREATED");
-        productDB=productRepository.save(product);
-        return productDB;
+     return  productRepository.save(product);
     }
 
     @Override

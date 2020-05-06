@@ -40,17 +40,17 @@ public class OrderDetail {
     private Product product;
 
     @ApiModelProperty(value="La cantidad de pedidos del producto", dataType="byte", position=4)
-    @NotEmpty(message = "La cantidad no puede estar vacía")
+    @NotNull(message = "La cantidad no puede estar vacía")
     @Column(name = "quantity", nullable = false)
     private byte quantity;
 
     @ApiModelProperty(value="El precio unitario", dataType="float", position=5)
-    @NotEmpty(message = "El precio unitario no puede ser vacío")
+    @NotNull(message = "El precio unitario no puede ser vacío")
     @Column(name = "unit_price", nullable = false)
     private float unitPrice;
 
     @ApiModelProperty(value="El precio total", dataType="float", position=6)
-    @NotEmpty(message = "El precio total no puede ser vacía")
+    @NotNull(message = "El precio total no puede ser vacía")
     @Column(name = "total_price", nullable = false)
     private float totalPrice;
 

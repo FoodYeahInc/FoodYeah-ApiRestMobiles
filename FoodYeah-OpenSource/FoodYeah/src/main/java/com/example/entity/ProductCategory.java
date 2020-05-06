@@ -8,12 +8,18 @@ import javax.validation.constraints.Positive;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "product_categories")
 public class ProductCategory {
+
+
+
     @ApiModelProperty(value="ID de la categoría de productos", dataType="Long", position=1)
     @Id
+    @Column(name="category_id",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -28,7 +34,6 @@ public class ProductCategory {
     private String productCategoryDescription;
 
     @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
-    @NotEmpty(message = "La Order no sea crea ni se destruye sólo se transforma")
-    @Column(name = "product_category_state",nullable = false)
+    @Column(name = "product_category_state",nullable = true)
     public String state;
 }

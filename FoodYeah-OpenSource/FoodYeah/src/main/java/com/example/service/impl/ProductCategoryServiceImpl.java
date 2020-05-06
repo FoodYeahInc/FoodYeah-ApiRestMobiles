@@ -25,13 +25,9 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public ProductCategory createProduct_Category(ProductCategory product_category) {
-        ProductCategory product_categoryDB=this.getProduct_Category(product_category.getId());
-        if(product_categoryDB!=null){
-            return product_categoryDB;
-        }
         product_category.setState("CREATED");
-        product_categoryDB=productCategoryRepository.save(product_category);
-        return product_categoryDB;
+      return productCategoryRepository.save(product_category);
+
     }
 
     @Override

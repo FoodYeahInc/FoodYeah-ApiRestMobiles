@@ -38,6 +38,7 @@ public class Customer {
 
     @ApiModelProperty(value="La edad del usuario", dataType="byte", position=4)
     @Column(name = "customer_age", nullable = true)
+    @NotNull(message = "No puede estar vacio")
     private byte CustomerAge;
 
     @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
