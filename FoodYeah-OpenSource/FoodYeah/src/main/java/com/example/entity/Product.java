@@ -47,5 +47,14 @@ public class Product {
     @NotEmpty(message = "La Order no sea crea ni se destruye sólo se transforma")
     @Column(name = "product_sellday",nullable = false)
     public Date sellday;
-    //TODO: Sellday
+
+    @ApiModelProperty(value = "imagen del producto", dataType = "String")
+    @NotEmpty(message = "No puede estar vacio")
+    @Column(name = "product_image_url",nullable = false)
+    public String imageUrl;
+
+    @ApiModelProperty(value = "stock del producto",dataType = "int")
+    @NotEmpty(message = "No puede estar vacio")
+    @Column(name="product_stock",nullable = false)
+    public int Stock;
 }
