@@ -12,6 +12,6 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product,Long> {
 
     List<Product> findByCategory(ProductCategory category);
-    @Query(value = "SELECT * FROM Product WHERE SellDay =?1",nativeQuery = true)
-    List<Product> findBySellDay(int sellday);
+    @Query(value = "SELECT * FROM PRODUCTS u WHERE u.product_sellday =?1",nativeQuery = true)
+    List<Product> findBySellDay(int SellDay);
 }
