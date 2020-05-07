@@ -54,8 +54,7 @@ public class OrderDetail {
     @Column(name = "total_price", nullable = false)
     private float totalPrice;
 
-    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
-    @NotEmpty(message = "La OrderDetail no sea crea ni se destruye sólo se transforma")
-    @Column(name = "order_detail_state",nullable = false)
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=7)
+    @Column(name = "order_detail_state")
     public String state;
 }

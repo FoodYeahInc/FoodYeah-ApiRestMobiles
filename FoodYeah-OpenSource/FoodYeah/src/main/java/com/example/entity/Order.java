@@ -43,13 +43,12 @@ public class Order{
     @Column(name = "Time", nullable = false)
     private String time;
 
-    @ApiModelProperty(value="El precio total de la orden", dataType="float", position=4)
+    @ApiModelProperty(value="El precio total de la orden", dataType="float", position=5)
     @NotNull(message = "El precio total no puede ser vacío")
     @Column(name = "total_price", nullable = false)
     private float totalPrice;
 
-    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
-    @NotEmpty(message = "La Order no sea crea ni se destruye sólo se transforma")
-    @Column(name = "order_state",nullable = false)
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=6)
+    @Column(name = "order_state")
     public String state;
 }
