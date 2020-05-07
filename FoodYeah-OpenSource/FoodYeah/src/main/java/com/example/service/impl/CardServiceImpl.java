@@ -26,8 +26,8 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public List<Card> findByCustomer(Customer costumer) {
-        return cardRepository.findByCustomer(costumer);
+    public List<Card> getAllByCustomerId(long id) {
+        return cardRepository.findAllByCustomerId(id);
     }
 
     @Override
