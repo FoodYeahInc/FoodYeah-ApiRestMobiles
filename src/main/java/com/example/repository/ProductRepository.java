@@ -17,4 +17,8 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> findByCategoryId(long categoryId);
     @Query(value = "SELECT * FROM PRODUCTS u WHERE u.product_sellday <= 5 and u.category_id = 1 ",nativeQuery = true)
     List<Product>  menuSemanal();
+    @Query(value = "SELECT * FROM PRODUCTS u WHERE  u.category_id > 1 ",nativeQuery = true)
+    List<Product>  platosALaCarta();
+    @Query(value = "SELECT * FROM PRODUCTS u WHERE  u.category_id > 1 AND u.category_id = ?1  ",nativeQuery = true)
+    List<Product>  platosALaCartaByCategory(long categoryId);
 }

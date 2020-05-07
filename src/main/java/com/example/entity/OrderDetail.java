@@ -38,10 +38,10 @@ public class OrderDetail {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Product product;
 
-    @ApiModelProperty(value="La cantidad de pedidos del producto", dataType="int", position=4)
+    @ApiModelProperty(value="La cantidad de pedidos del producto", dataType="byte", position=4)
     @NotNull(message = "La cantidad no puede estar vacía")
     @Column(name = "quantity", nullable = false)
-    private int quantity;
+    private byte quantity;
 
     @ApiModelProperty(value="El precio unitario", dataType="float", position=5)
     @NotNull(message = "El precio unitario no puede ser vacío")

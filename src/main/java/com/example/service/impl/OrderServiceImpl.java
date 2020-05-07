@@ -67,11 +67,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public void DecreaseStock(Order order){
-        List<OrderDetail> _orderDetails = orderDetailRepository.findAllByOrderId(order.getId());
-        for (OrderDetail orderDetail: _orderDetails
-        ) {
-            orderDetail.getProduct().setStock(orderDetail.getProduct().getStock() - orderDetail.getQuantity());
-            orderDetailRepository.save(orderDetail);
+        List<OrderDetail> orderDetails = orderDetailRepository.findAllByOrderId(order.getId());
+        for (OrderDetail orderDetail: orderDetails
+             ) {
+            orderDetail.getProduct().setStock((byte) (orderDetail.getProduct().getStock() - orderDetail.getQuantity()));
         }
     }
 

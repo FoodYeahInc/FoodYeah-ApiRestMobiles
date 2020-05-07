@@ -56,10 +56,23 @@ public class ProductController {
         List<Product>products = productService.menuSemanal();
         return ResponseEntity.ok(products);
     }
+    @GetMapping("/platoscarta")
+    public ResponseEntity<List<Product>>platosALaCarta(){
+        List<Product>products = productService.platosALaCarta();
+        return ResponseEntity.ok(products);
+    }
+    @GetMapping("/platoscarta/category/{category}")
+    public ResponseEntity<List<Product>>platosALaCartaByCategoryId(@PathVariable("category")long categoryid){
+        List<Product>products = productService.platosALaCartaByCategoryId(categoryid);
+        return ResponseEntity.ok(products);
+    }
+
     @GetMapping("/category/{category}")
     public ResponseEntity<List<Product>>findByCategoryId(@PathVariable("category")long categoryid){
-
         List<Product>products = productService.findByCategoryId(categoryid);
+        if(null==products){
+            return  ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(products);
     }
     @GetMapping("/{id}")
