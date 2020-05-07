@@ -26,7 +26,6 @@ public class OrderDetail {
     private Long id;
 
     @ApiModelProperty(value="La orden al cual pertenece el detalle", dataType="Order", position=2)
-    @NotNull(message = "La orden no puede estar vacía")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
@@ -39,23 +38,21 @@ public class OrderDetail {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Product product;
 
-    @ApiModelProperty(value="La cantidad de pedidos del producto", dataType="byte", position=4)
+    @ApiModelProperty(value="La cantidad de pedidos del producto", dataType="int", position=4)
     @NotNull(message = "La cantidad no puede estar vacía")
     @Column(name = "quantity", nullable = false)
-    private byte quantity;
+    private int quantity;
 
     @ApiModelProperty(value="El precio unitario", dataType="float", position=5)
     @NotNull(message = "El precio unitario no puede ser vacío")
-    @Column(name = "unit_price", nullable = false)
+    @Column(name = "unit_price")
     private float unitPrice;
 
     @ApiModelProperty(value="El precio total", dataType="float", position=6)
-    @NotNull(message = "El precio total no puede ser vacía")
-    @Column(name = "total_price", nullable = false)
+    @Column(name = "total_price")
     private float totalPrice;
 
-    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
-    @NotEmpty(message = "La OrderDetail no sea crea ni se destruye sólo se transforma")
-    @Column(name = "order_detail_state",nullable = false)
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=7)
+    @Column(name = "order_detail_state")
     public String state;
 }

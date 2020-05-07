@@ -3,6 +3,7 @@ package com.example.service.impl;
 import com.example.entity.OrderDetail;
 import com.example.repository.OrderDetailRepository;
 import com.example.service.OrderDetailService;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +11,9 @@ import java.util.List;
 
 @Service
 public class OrderDetailServiceImpl implements OrderDetailService {
+
     @Autowired
-    private OrderDetailRepository orderDetailRepository;
+    public static OrderDetailRepository orderDetailRepository;
     public OrderDetailServiceImpl(OrderDetailRepository orderDetailRepository){
         this.orderDetailRepository=orderDetailRepository;
     }
@@ -29,7 +31,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     public OrderDetail createOrderDetail(OrderDetail orderDetail) {
 
         orderDetail.setState("CREATED");
-     return orderDetailRepository.save(orderDetail);
+        return orderDetailRepository.save(orderDetail);
 
     }
 
@@ -42,9 +44,6 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         orderDetailDB.setOrder(orderDetail.getOrder());
         orderDetailDB.setProduct(orderDetail.getProduct());
         orderDetailDB.setQuantity(orderDetail.getQuantity());
-        //TODO .setTotalPrice
-
-
         orderDetailDB.setState("UPDATED");
         orderDetailDB=orderDetailRepository.save(orderDetail);
         return orderDetailDB;

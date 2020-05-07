@@ -47,17 +47,16 @@ public class Card {
     @Column(name = "card_cvi",nullable = false)
     public byte cardCvi;
 
-    @ApiModelProperty(value="El nombre del usuario de la tarjeta", dataType="String",  example="Alexis Enrique Barrios Pérez", position=6)
-    @Column(name = "card_owner_name",nullable = false)
-    public String cardOwnerName;
-
-    @ApiModelProperty(value="Fecha de expiracion de la tarjeta", dataType="String",  example="1234", position=5)
+    @ApiModelProperty(value="Fecha de expiracion de la tarjeta", dataType="String",  example="1234", position=6)
     @NotEmpty(message = "El cvc o cvv de la tarjeta no deber ser vacio")
     @Column(name = "card_expire_date",nullable = false)
     public String cardExpireDate;
 
-    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
-    @NotEmpty(message = "La tarjeta no sea crea ni se destruye sólo se transforma")
-    @Column(name = "card_state",nullable = false)
+    @ApiModelProperty(value="El nombre del usuario de la tarjeta", dataType="String",  example="Alexis Enrique Barrios Pérez", position=7)
+    @Column(name = "card_owner_name")
+    public String cardOwnerName;
+
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=8)
+    @Column(name = "card_state")
     public String state;
 }

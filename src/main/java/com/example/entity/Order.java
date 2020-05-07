@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -13,9 +14,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 @Data
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Table(name="orders")
@@ -33,23 +37,34 @@ public class Order{
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Customer costumer;
 
-    @ApiModelProperty(value="El nombre del usuario", dataType="String", position=3)
-    @NotEmpty(message = "La fecha no puede ser vacía")
-    @Column(name = "Date", nullable = false)
+    @ApiModelProperty(value="detalle de la orden", dataType="List<OrderDetail>", position=3)
+    @Valid
+    @NotNull(message = "no puede estar vacío")
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<OrderDetail> orderDetails;
+
+    @ApiModelProperty(value="El nombre del usuario", dataType="String", position=4)
+    @Column(name = "Date")
     private String date;
 
-    @ApiModelProperty(value="El tiempo de la realización del pedido", dataType="String", position=4)
-    @NotEmpty(message = "El tiempo no puede ser vacío")
-    @Column(name = "Time", nullable = false)
-    private String time;
+    @ApiModelProperty(value="El tiempo de inicio del pedido", dataType="String", position=5)
+    @Column(name = "init_time")
+    private String inittime;
 
-    @ApiModelProperty(value="El precio total de la orden", dataType="float", position=4)
-    @NotNull(message = "El precio total no puede ser vacío")
-    @Column(name = "total_price", nullable = false)
+    @ApiModelProperty(value="El tiempo de finalización del pedido", dataType="String", position=6)
+    @Column(name = "end_Time")
+    private String endtime;
+
+    @ApiModelProperty(value="El precio total de la orden", dataType="float", position=7)
+    @Column(name = "total_price")
     private float totalPrice;
 
-    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
-    @NotEmpty(message = "La Order no sea crea ni se destruye sólo se transforma")
-    @Column(name = "order_state",nullable = false)
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=8)
+    @Column(name = "order_state")
     public String state;
+
+    public Order() {
+        orderDetails = new ArrayList<>();
+    }
 }

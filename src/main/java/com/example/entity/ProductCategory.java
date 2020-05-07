@@ -35,7 +35,7 @@ public class ProductCategory {
     @Column(name = "product_category_description",nullable = false)
     private String productCategoryDescription;
 
-    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
-    @Column(name = "product_category_state",nullable = true)
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=4)
+    @Column(name = "product_category_state")
     public String state;
 }

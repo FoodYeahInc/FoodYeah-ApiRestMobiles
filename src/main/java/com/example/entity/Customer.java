@@ -34,16 +34,15 @@ public class Customer {
     @ApiModelProperty(value="El nombre del usuario", dataType="String", position=3)
     @NotEmpty(message = "El nombre no puede ser vacio ")
     @Column(name = "customer_name", nullable = false)
-    private String CustomerName;
+    private String customerName;
 
     @ApiModelProperty(value="La edad del usuario", dataType="byte", position=4)
     @Column(name = "customer_age", nullable = true)
     @NotNull(message = "No puede estar vacio")
-    private byte CustomerAge;
+    private byte customerAge;
 
     @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
-    @NotEmpty(message = "El costumer no sea crea ni se destruye sólo se transforma")
-    @Column(name = "customer_state",nullable = false)
+    @Column(name = "customer_state")
     public String state;
 
     //public List<Card> Cards { get; set; }

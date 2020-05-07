@@ -8,7 +8,7 @@ public interface CardService {
     List<Card> findCardAll();
     Card getCard(Long id);
 
-    List<Card> findByCustomer(Customer costumer);
+    List<Card> getAllByCustomerId(long Id);
 
 
     Card createCard(Card card);

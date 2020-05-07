@@ -40,7 +40,6 @@ public class CustomerCategory {
     private String customerCategoryDescription;
 
     @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=4)
-    @NotEmpty(message = "El costumer no sea crea ni se destruye sólo se transforma")
-    @Column(name = "customer_category_state",nullable = false)
+    @Column(name = "customer_category_state")
     public String state;
 }
