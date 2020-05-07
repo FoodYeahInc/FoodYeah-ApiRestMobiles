@@ -42,9 +42,6 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         orderDetailDB.setOrder(orderDetail.getOrder());
         orderDetailDB.setProduct(orderDetail.getProduct());
         orderDetailDB.setQuantity(orderDetail.getQuantity());
-        //TODO .setTotalPrice
-
-
         orderDetailDB.setState("UPDATED");
         orderDetailDB=orderDetailRepository.save(orderDetail);
         return orderDetailDB;

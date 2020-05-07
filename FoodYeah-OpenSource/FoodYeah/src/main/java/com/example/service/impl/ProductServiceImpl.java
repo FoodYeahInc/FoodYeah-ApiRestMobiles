@@ -48,6 +48,10 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.menuSemanal();
     }
 
+    @Override
+    public List<Product> platosALaCartaByCategoryId(long id) { return productRepository.platosALaCartaByCategory(id);    }
+
+
 
     @Transactional
     @Override
@@ -79,5 +83,4 @@ public class ProductServiceImpl implements ProductService {
         productDB.setState("DELETE");
         return productRepository.save(productDB);
     }
-
 }

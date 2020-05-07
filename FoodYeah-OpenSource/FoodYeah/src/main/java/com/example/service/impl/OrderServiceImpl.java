@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
         List<OrderDetail> orderDetails = orderDetailRepository.findAllByOrderId(order.getId());
         for (OrderDetail orderDetail: orderDetails
              ) {
-            orderDetail.getProduct().setStock(orderDetail.getProduct().getStock() - orderDetail.getQuantity());
+            orderDetail.getProduct().setStock((byte) (orderDetail.getProduct().getStock() - orderDetail.getQuantity()));
         }
     }
 

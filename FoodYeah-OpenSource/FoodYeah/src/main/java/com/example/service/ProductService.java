@@ -10,6 +10,8 @@ public interface ProductService {
     List<Product> findBySellday(int Sellday);
     List<Product> findByCategoryId(long id);
     List<Product> menuSemanal();
+    List<Product> platosALaCarta();
+    List<Product> platosALaCartaByCategoryId(long id);
     Product createProduct(Product product);
     Product updateProduct(Product product);
     Product deleteProduct(Long id);
