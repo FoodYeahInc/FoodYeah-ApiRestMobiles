@@ -51,6 +51,11 @@ public class ProductController {
         List<Product>products = productService.findBySellday(sellday);
         return ResponseEntity.ok(products);
     }
+    @GetMapping("/week")
+    public ResponseEntity<List<Product>>menuSemanal(){
+        List<Product>products = productService.menuSemanal();
+        return ResponseEntity.ok(products);
+    }
     @GetMapping("/category/{category}")
     public ResponseEntity<List<Product>>findByCategoryId(@PathVariable("category")long categoryid){
 

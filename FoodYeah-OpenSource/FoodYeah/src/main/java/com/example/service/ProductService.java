@@ -10,6 +10,7 @@ public interface ProductService {
     Product getProduct(Long id);
     List<Product> findBySellday(int Sellday);
     List<Product> findByCategoryId(long id);
+    List<Product> menuSemanal();
     Product createProduct(Product product);
     Product updateProduct(Product product);
     Product deleteProduct(Long id);

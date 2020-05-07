@@ -43,6 +43,11 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findByCategoryId(id);
     }
 
+    @Override
+    public List<Product> menuSemanal() {
+        return productRepository.menuSemanal();
+    }
+
 
     @Transactional
     @Override
