@@ -13,11 +13,10 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
-
 @Service
 public class ProductServiceImpl implements ProductService {
     @Autowired
-    private final ProductRepository productRepository;
+    public static ProductRepository productRepository;
 
     public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;

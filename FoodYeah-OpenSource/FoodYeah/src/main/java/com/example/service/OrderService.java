@@ -1,13 +1,17 @@
 package com.example.service;
 
 import com.example.entity.Order;
+import com.example.entity.OrderDetail;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public interface OrderService {
     List<Order> findOrderAll();
     Order getOrder(Long id);
     Order createOrder(Order order);
-    //TODO: Siento que faltaría un modificar por si ocurren cambios en las ordenes
-    //O un rico delete, por si el sistema pasa mal los datos
+    void SetEndTime(Order order);
+    void DecreaseStock(Order order);
+    String GetAverageTime();
 }

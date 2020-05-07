@@ -1,5 +1,4 @@
 package com.example.service.impl;
-
 import com.example.entity.Order;
 import com.example.entity.OrderDetail;
 import com.example.entity.Product;
@@ -14,13 +13,15 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepository orderRepository;
-
+    @Autowired
     private OrderDetailRepository orderDetailRepository;
+    @Autowired
     private ProductRepository productRepository;
 
     @Override
@@ -35,36 +36,42 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order createOrder(Order order) {
-
         order.setState("CREATED");
+        //PrepareDetail(order);
+        //PrepareHeader(order);
         return orderRepository.save(order);
     }
 
-    private void PrepareDetail(List<OrderDetail> orderDetails){
-        for (OrderDetail orderDetail: orderDetails
-             ) {
-            Product product = productRepository.getOne(orderDetail.getProduct().getId());
-            orderDetail.setUnitPrice(product.getProductPrice());
-            orderDetail.setTotalPrice(orderDetail.getUnitPrice() * orderDetail.getQuantity());
-        }
-    }
-
     private void PrepareHeader(Order order){
+
         order.setDate(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
         order.setTotalPrice(OrderTotalPrice(order.getId()));
         order.setInittime(new SimpleDateFormat("HH:mm:ss").format(new Date()));
         order.setEndtime("00:00:00");
     }
 
+    private void PrepareDetail(Order order) {
+        List<OrderDetail> _orderDetails = order.getOrderDetails();
+        for (OrderDetail orderDetail : _orderDetails) {
+            Product product = productRepository.getOne(orderDetail.getProduct().getId());
+            orderDetail.setUnitPrice(product.getProductPrice());
+            orderDetail.setTotalPrice(orderDetail.getUnitPrice() * orderDetail.getQuantity());
+            orderDetailRepository.save(orderDetail);
+        }
+    }
+
+
     public void SetEndTime(Order order){
         order.setEndtime(new SimpleDateFormat("HH:mm:ss").format(new Date()));
+        orderRepository.save(order);
     }
 
     public void DecreaseStock(Order order){
-        List<OrderDetail> orderDetails = orderDetailRepository.findAllByOrderId(order.getId());
-        for (OrderDetail orderDetail: orderDetails
-             ) {
+        List<OrderDetail> _orderDetails = orderDetailRepository.findAllByOrderId(order.getId());
+        for (OrderDetail orderDetail: _orderDetails
+        ) {
             orderDetail.getProduct().setStock(orderDetail.getProduct().getStock() - orderDetail.getQuantity());
+            orderDetailRepository.save(orderDetail);
         }
     }
 
@@ -92,7 +99,7 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
-    public float OrderTotalPrice (long Id){
+    private float OrderTotalPrice (long Id){
         float TotalPrice = 0;
         List<OrderDetail> orderDetails = orderDetailRepository.findAllByOrderId(Id);
         for (OrderDetail orderDetail: orderDetails

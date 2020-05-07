@@ -55,10 +55,10 @@ public class Product {
     @Column(name = "product_ingredients",nullable = false)
     public String[] ingredients;
 
-    @ApiModelProperty(value = "stock del producto",dataType = "byte",example="50", position=8)
+    @ApiModelProperty(value = "stock del producto",dataType = "int",example="50", position=8)
     @NotNull(message = "No puede estar vacio")
     @Column(name="product_stock")
-    public byte stock;
+    public int stock;
 
     @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=9)
     @Column(name = "product_state",nullable = true)

@@ -3,6 +3,7 @@ package com.example.service.impl;
 import com.example.entity.Customer;
 import com.example.entity.CustomerCategory;
 import com.example.repository.CustomerRepository;
+import com.example.repository.OrderDetailRepository;
 import com.example.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
