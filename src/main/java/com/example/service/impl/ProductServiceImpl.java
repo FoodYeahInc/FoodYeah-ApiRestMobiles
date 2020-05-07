@@ -50,7 +50,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> platosALaCartaByCategoryId(long id) { return productRepository.platosALaCartaByCategory(id);    }
 
-
+    @Override
+    public List<Product> platosALaCarta() { return productRepository.platosALaCarta();    }
 
     @Transactional
     @Override
