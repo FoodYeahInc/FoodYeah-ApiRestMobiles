@@ -52,8 +52,8 @@ public class Product {
     @Column(name = "product_image_url",nullable = false)
     public String imageUrl;
 
-    @ApiModelProperty(value = "stock del producto",dataType = "byte",example="50", position=8)
+    @ApiModelProperty(value = "stock del producto",dataType = "int",example="50", position=8)
     @NotNull(message = "No puede estar vacio")
     @Column(name="product_stock",nullable = false)
-    public byte stock;
+    public int stock;
 }

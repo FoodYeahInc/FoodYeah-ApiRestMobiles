@@ -1,7 +1,6 @@
 package com.example.service;
 
 import com.example.entity.Product;
-import com.example.entity.ProductCategory;
 
 import java.util.List;
 
