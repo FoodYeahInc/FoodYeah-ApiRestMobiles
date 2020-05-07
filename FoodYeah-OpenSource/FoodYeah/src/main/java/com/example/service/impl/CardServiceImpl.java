@@ -7,6 +7,7 @@ import com.example.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,9 +16,10 @@ public class CardServiceImpl implements CardService {
     @Autowired
     private CardRepository cardRepository;
 
+
     @Override
     public List<Card> findCardAll() {
-        return cardRepository.findAll();
+       return cardRepository.findAll();
     }
 
     @Override
@@ -26,9 +28,11 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public List<Card> findByCustomer(Customer costumer) {
-        return cardRepository.findByCustomer(costumer);
+    public List<Card> getAllByCustomerId(long Id) {
+
+        return cardRepository.findAllByCustomerId(Id);
     }
+
 
     @Override
     public Card createCard(Card card) {

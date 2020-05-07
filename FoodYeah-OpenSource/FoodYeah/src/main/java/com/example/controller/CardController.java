@@ -62,6 +62,16 @@ public class CardController {
         return ResponseEntity.ok(card);
 
     }
+    //------------------Retrieve All By Customer Id------------------
+    @GetMapping("/customers={id}")
+    public ResponseEntity<List<Card>> getAllByCustomerId(@PathVariable(name="id") long id)
+    {
+        List<Card> cards = new ArrayList<>();
+        cards = cardService.getAllByCustomerId(id);
+
+        return ResponseEntity.ok(cards);
+
+    }
 
      // -------------------Create a Card-------------------------------------------
 
