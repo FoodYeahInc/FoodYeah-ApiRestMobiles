@@ -34,13 +34,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findByCategory(ProductCategory category) {
-        return productRepository.findByCategory(category);
+    public List<Product> findBySellday(int Sellday) {
+        return productRepository.findBySellDay(Sellday);
     }
 
     @Override
-    public List<Product> findBySellday(int Sellday) {
-        return productRepository.findBySellDay(Sellday);
+    public List<Product> findByCategoryId(long id) {
+        return productRepository.findByCategoryId(id);
     }
 
 
