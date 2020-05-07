@@ -51,7 +51,7 @@ public class ProductController {
         List<Product>products = productService.findBySellday(sellday);
         return ResponseEntity.ok(products);
     }
-    @GetMapping("/category/{categoru}")
+    @GetMapping("/category/{category}")
     public ResponseEntity<List<Product>>findByCategoryId(@PathVariable("category")long categoryid){
 
         List<Product>products = productService.findByCategoryId(categoryid);
