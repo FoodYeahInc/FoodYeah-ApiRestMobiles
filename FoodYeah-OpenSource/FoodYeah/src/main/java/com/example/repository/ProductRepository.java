@@ -15,4 +15,6 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> findBySellDay(int SellDay);
     @Query(value = "SELECT * FROM  PRODUCTS where PRODUCTS.CATEGORY_ID = ?1  ",nativeQuery = true)
     List<Product> findByCategoryId(long categoryId);
+    @Query(value = "SELECT * FROM PRODUCTS u WHERE u.product_sellday <= 5 and u.category_id = 1 ",nativeQuery = true)
+    List<Product>  menuSemanal();
 }
