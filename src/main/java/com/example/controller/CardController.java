@@ -102,7 +102,6 @@ public class CardController {
         card.setId(id);
         currentCard = cardService.updateCard(card);
         return ResponseEntity.ok(currentCard);
-
     }
 
     @DeleteMapping(value = "/{id}")
@@ -116,10 +115,4 @@ public class CardController {
         card = cardService.deleteCard(id);
         return ResponseEntity.ok(card);
     }
-
-
-
-
-
-
 }

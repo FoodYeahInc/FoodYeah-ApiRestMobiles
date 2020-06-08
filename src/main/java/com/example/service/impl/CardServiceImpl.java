@@ -38,6 +38,7 @@ public class CardServiceImpl implements CardService {
     public Card createCard(Card card) {
 
         card.setState("CREATED");
+        card.setCardMoney(50);
         return cardRepository.save(card);
 
     }

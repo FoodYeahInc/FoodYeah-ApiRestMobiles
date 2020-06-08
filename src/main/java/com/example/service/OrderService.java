@@ -14,4 +14,5 @@ public interface OrderService {
     void SetEndTime(Order order);
     void DecreaseStock(Order order);
     String GetAverageTime();
+    boolean DecreaseCostumerMoney(long cardId, long orderId);
 }

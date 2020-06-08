@@ -59,4 +59,8 @@ public class Card {
     @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=8)
     @Column(name = "card_state")
     public String state;
+
+    @ApiModelProperty(value="El dinero de la tarjeta", dataType="float",  example="100", position=9)
+    @Column(name = "card_money")
+    public float cardMoney;
 }

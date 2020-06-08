@@ -1,6 +1,8 @@
 package com.example.controller;
 
+import com.example.entity.Card;
 import com.example.entity.Order;
+import com.example.service.CardService;
 import com.example.service.OrderService;
 import com.example.util.Message;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +15,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -23,11 +27,11 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping
-    public ResponseEntity<List<Order>> listAllOrders(@RequestParam(name = "orderId", required =  false) Long orderId){
+    public ResponseEntity<List<Order>> listAllOrders(@RequestParam(name = "orderId", required = false) Long orderId) {
         List<Order> orders = new ArrayList<>();
-        if(null == orderId){
+        if (null == orderId) {
             orders = orderService.findOrderAll();
-            if(orders.isEmpty()){
+            if (orders.isEmpty()) {
                 return ResponseEntity.noContent().build();
             }
         }
@@ -35,23 +39,51 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrder(@PathVariable("id") long id){
+    public ResponseEntity<Order> getOrder(@PathVariable("id") long id) {
         log.info("Fetching Orders with Id {}", id);
         Order order = orderService.getOrder(id);
-        if(null == order){
-            log.error("Order with id {} not found.",id);
+        if (null == order) {
+            log.error("Order with id {} not found.", id);
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(order);
     }
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@Valid @RequestBody Order order, BindingResult result){
+    public ResponseEntity<Order> createOrder(@Valid @RequestBody Order order, BindingResult result) {
         log.info("Creating Order : {}", order);
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Message.formatMessage(result));
         }
         Order orderDB = orderService.createOrder(order);
         return ResponseEntity.status(HttpStatus.CREATED).body(orderDB);
+    }
+
+    @GetMapping("/getAverageTime")
+    public Map<String, String> getAverageTime() {
+        HashMap<String, String> ResponseJSON = new HashMap<>();
+        ResponseJSON.put("AverageTime", orderService.GetAverageTime().toString() + " minutes.");
+        return ResponseJSON;
+    }
+
+    @PutMapping("/{orderId}/card={cardId}")
+    public ResponseEntity<Order> orderDelivered(@PathVariable("cardId") long cardId, @PathVariable("orderId") long orderId) {
+        if (orderService.DecreaseCostumerMoney(cardId, orderId)) {
+            log.info("Fetching Orders with Id {}", orderId);
+            Order order = orderService.getOrder(orderId);
+
+            orderService.SetEndTime(order);
+            orderService.DecreaseStock(order);
+
+            if (null == order) {
+                log.error("Order with id {} not found.", orderId);
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(order);
+        }
+        else {
+            log.error("No hay suficiente dinero en la tarjeta para pagar la orden", orderId);
+            return ResponseEntity.noContent().build();
+        }
     }
 }
