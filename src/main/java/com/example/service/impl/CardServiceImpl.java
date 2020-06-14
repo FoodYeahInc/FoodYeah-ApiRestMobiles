@@ -3,6 +3,7 @@ package com.example.service.impl;
 import com.example.entity.Card;
 import com.example.entity.Customer;
 import com.example.repository.CardRepository;
+import com.example.repository.CustomerRepository;
 import com.example.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class CardServiceImpl implements CardService {
     @Autowired
     private CardRepository cardRepository;
 
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @Override
     public List<Card> findCardAll() {
@@ -37,8 +40,10 @@ public class CardServiceImpl implements CardService {
     @Override
     public Card createCard(Card card) {
 
+        Customer customer = customerRepository.getOne(card.getCustomer().getId());
         card.setState("CREATED");
         card.setCardMoney(50);
+        card.setCardOwnerName(customer.getCustomerName());
         return cardRepository.save(card);
 
     }
