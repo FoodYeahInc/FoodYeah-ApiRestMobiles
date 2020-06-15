@@ -18,4 +18,5 @@ public interface CustomerService extends UserDetailsService{
     Customer updateCustomer(Customer customer);
     Customer deleteCustomer(Long id);
 
+    void assignRole(Long customerId, Long roleId);
 }

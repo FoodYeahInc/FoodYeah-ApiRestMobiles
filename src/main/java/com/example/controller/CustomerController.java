@@ -89,4 +89,14 @@ public class CustomerController {
         return  ResponseEntity.ok(customer);
     }
 
+    @PostMapping("/{customerId}/role={roleId}") 
+    public ResponseEntity<Customer> assignRole(@PathVariable("customerId") long customerId, @PathVariable("roleId") long roleId) {
+        Customer customer = customerService.getCustomer(customerId);
+        if ( null == customer ) {
+            log.error("Unable to delete. Customer with id {} not found.", customerId);
+            return  ResponseEntity.notFound().build();
+        }
+        customerService.assignRole(customerId, roleId);
+        return  ResponseEntity.ok(customer);
+    }
 }

@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
@@ -85,5 +87,11 @@ public class CustomerServiceImpl implements CustomerService {
         }
         customerDB.setState("DELETED");
         return customerRepository.save(customerDB);
+    }
+
+    @Override
+    @Transactional
+    public void assignRole(Long customerId, Long roleId) {
+        customerRepository.assignRole(customerId, roleId);
     }
 }
