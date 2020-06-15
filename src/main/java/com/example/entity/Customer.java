@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -30,22 +32,35 @@ public class Customer {
     @JoinColumn(name = "customer_category_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private CustomerCategory customerCategory;
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "customer_roles",
+            joinColumns = @JoinColumn(name= "customer_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name= "role_id", referencedColumnName = "id")
+        )
+    private List<Role> customerRoles;
 
-    @ApiModelProperty(value="El nombre del usuario", dataType="String", position=3)
+    @ApiModelProperty(value="El nombre del usuario", dataType="String", position=4)
     @NotEmpty(message = "El nombre no puede ser vacio ")
     @Column(name = "customer_name", nullable = false)
     private String customerName;
 
-    @ApiModelProperty(value="La edad del usuario", dataType="byte", position=4)
+    @ApiModelProperty(value="La edad del usuario", dataType="byte", position=5)
     @Column(name = "customer_age", nullable = true)
     @NotNull(message = "No puede estar vacio")
     private byte customerAge;
 
-    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=5)
+    @ApiModelProperty(value="El nombre de la cuenta del usuario", dataType="String", position=6)
+    @NotEmpty(message = "El nombre de la cuenta del usuario no puede ser vacio ")
+    @Column(name = "customer_username", nullable = false)
+    private String username;
+
+    @ApiModelProperty(value="La contraseña de la cuenta del usuario", dataType="String", position=7)
+    @NotEmpty(message = "La contraseña de la cuenta del usuario no puede ser vacio ")
+    @Column(name = "customer_password", nullable = false)
+    private String password;
+
+    @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=8)
     @Column(name = "customer_state")
     public String state;
-
-    //public List<Card> Cards { get; set; }
-    //public List<Order> Orders {get; set;}
-
 }

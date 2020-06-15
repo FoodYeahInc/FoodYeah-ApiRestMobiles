@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @Table(name="products")
@@ -43,24 +42,24 @@ public class Product {
     @ApiModelProperty(value="dia del menu de venta", dataType="byte",  example="4", position=5)
     @NotNull(message = "No puede estar vacio")
     @Column(name = "product_sellday",nullable = false)
-    public byte sellday;
+    private byte sellday;
 
     @ApiModelProperty(value = "imagen del producto", dataType = "String",example="test", position=6)
     @NotEmpty(message = "No puede estar vacio")
     @Column(name = "product_image_url",nullable = false)
-    public String imageUrl;
+    private String imageUrl;
 
     @ApiModelProperty(value = "ingredientes del producto", dataType = "String[]",example="test", position=7)
     @NotEmpty(message = "No puede estar vacio")
     @Column(name = "product_ingredients",nullable = false)
-    public String[] ingredients;
+    private String[] ingredients;
 
     @ApiModelProperty(value = "stock del producto",dataType = "int",example="50", position=8)
     @NotNull(message = "No puede estar vacio")
     @Column(name="product_stock")
-    public int stock;
+    private int stock;
 
     @ApiModelProperty(value="Ultima acción realizada por el usuario", dataType="String",  example="CREATED", position=9)
     @Column(name = "product_state",nullable = true)
-    public String state;
+    private String state;
 }

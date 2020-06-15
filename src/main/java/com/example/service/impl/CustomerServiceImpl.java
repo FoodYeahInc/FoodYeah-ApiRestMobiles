@@ -6,15 +6,36 @@ import com.example.repository.CustomerRepository;
 import com.example.repository.OrderDetailRepository;
 import com.example.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
-
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Customer customer = customerRepository.findOneByUsername(username);
+        if (customer == null){
+            throw new UsernameNotFoundException(String.format("Usuario no existe", username));
+        }
+        //en spring security los roles tienen nombre de GrantedAuthority
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        customer.getCustomerRoles().forEach(role->{
+            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+        });
+
+        UserDetails userDetails = new User(customer.getUsername(), customer.getPassword(), authorities);
+        return userDetails;
+    }
 
     @Override
     public List<Customer> findCustomerAll() {
@@ -32,6 +53,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Customer findOneByUsername(String username) {
+        return customerRepository.findOneByUsername(username);
+    }
+
+    @Override
     public Customer createCustomer(Customer customer) {
 
         customer.setState("CREATED");
@@ -41,8 +67,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer updateCustomer(Customer customer) {
-        Customer customerDB=this.getCustomer(customer.getId());
-        if(customerDB==null){
+        Customer customerDB = this.getCustomer(customer.getId());
+        if (customerDB == null) {
             return null;
         }
         customerDB.setCustomerAge(customer.getCustomerAge());
@@ -53,8 +79,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer deleteCustomer(Long id) {
-        Customer customerDB=this.getCustomer(id);
-        if(customerDB==null){
+        Customer customerDB = this.getCustomer(id);
+        if (customerDB == null) {
             return null;
         }
         customerDB.setState("DELETED");

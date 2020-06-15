@@ -1,7 +1,7 @@
 package com.example.service;
 
 import com.example.entity.Card;
-import com.example.entity.Customer;
+
 import java.util.List;
 
 public interface CardService {
@@ -9,7 +9,6 @@ public interface CardService {
     Card getCard(Long id);
 
     List<Card> getAllByCustomerId(long Id);
-
 
     Card createCard(Card card);
     Card updateCard(Card card);

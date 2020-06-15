@@ -6,12 +6,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Positive;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Entity
 @Data
