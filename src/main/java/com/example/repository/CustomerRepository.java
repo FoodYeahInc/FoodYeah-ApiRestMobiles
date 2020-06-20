@@ -15,8 +15,8 @@ import java.util.List;
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
     Customer findOneByUsername(String username);
     List<Customer>  findByCustomerCategory(CustomerCategory customerCategory);
-    
+
     @Modifying
     @Query(value="INSERT INTO customer_roles(customer_id,role_id) VALUES(:customerId,:roleId)",nativeQuery =true)
-    void assignRole(@Param("customerId") Long customerId,@Param("roleId") Long roleId );
+    void assignRole(Long customerId,Long roleId);
 }

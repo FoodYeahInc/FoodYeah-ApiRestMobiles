@@ -25,7 +25,6 @@ public class CustomerCategoryServiceImpl implements CustomerCategoryService {
 
     @Override
     public CustomerCategory createCustomerCategory(CustomerCategory customer_category) {
-
         customer_category.setState("CREATED");
 return customerCategoryRepository.save(customer_category);
     }

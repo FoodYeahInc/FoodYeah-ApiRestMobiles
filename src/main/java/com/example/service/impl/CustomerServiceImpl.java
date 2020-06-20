@@ -13,11 +13,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.transaction.Transactional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -61,11 +60,16 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    @Transactional
     public Customer createCustomer(Customer customer) {
+        Long UserRole= new Long(2);
+
         customer.setState("CREATED");
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-        return customerRepository.save(customer);
+        Customer guardar = customerRepository.save(customer);
+        customerRepository.assignRole(guardar.getId(),UserRole);
+        return guardar;
     }
 
     @Override
@@ -90,9 +94,4 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.save(customerDB);
     }
 
-    @Override
-    @Transactional
-    public void assignRole(Long customerId, Long roleId) {
-        customerRepository.assignRole(customerId, roleId);
-    }
 }
