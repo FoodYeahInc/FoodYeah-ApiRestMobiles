@@ -62,10 +62,14 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer createCustomer(Customer customer) {
+        Long UserRole= new Long(2);
+
         customer.setState("CREATED");
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-        return customerRepository.save(customer);
+        Customer guardar = customerRepository.save(customer);
+        customerRepository.assignRole(guardar.getId(),UserRole);
+        return guardar;
     }
 
     @Override
