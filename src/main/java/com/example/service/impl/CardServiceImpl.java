@@ -54,10 +54,11 @@ public class CardServiceImpl implements CardService {
         if(cardDB==null){
             return null;
         }
+        Customer customer = customerRepository.getOne(card.getCustomer().getId());
         cardDB.setCustomer(card.getCustomer());
         cardDB.setCardNumber(card.getCardNumber());
         cardDB.setCardCvi(card.getCardCvi());
-        cardDB.setCardOwnerName(card.getCardOwnerName());
+        card.setCardOwnerName(customer.getCustomerName());
         cardDB.setCardExpireDate(card.getCardExpireDate());
         cardDB.setState("UPDATED");
         return cardRepository.save(cardDB);
