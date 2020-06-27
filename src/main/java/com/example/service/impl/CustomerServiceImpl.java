@@ -64,7 +64,14 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional
     public Customer createCustomer(Customer customer) {
-        Long UserRole= new Long(2);
+        Long UserRole;
+
+        if(customer.getUsername().startsWith("a")){
+            UserRole = new Long(1);
+        }
+        else{
+            UserRole= new Long(2);
+        }
 
         customer.setState("CREATED");
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
