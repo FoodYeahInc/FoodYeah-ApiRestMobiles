@@ -42,7 +42,6 @@ public class CardServiceImpl implements CardService {
 
         Customer customer = customerRepository.getOne(card.getCustomer().getId());
         card.setState("CREATED");
-        card.setCardMoney(50);
         card.setCardOwnerName(customer.getCustomerName());
         return cardRepository.save(card);
 
