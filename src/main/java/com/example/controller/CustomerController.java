@@ -50,6 +50,17 @@ public class CustomerController {
         return  ResponseEntity.ok(customer);
     }
 
+    @GetMapping("/user={username}")
+    public ResponseEntity<Customer> getCustomer(@PathVariable("username") String username) {
+        log.info("Fetching Customer with username {}", username);
+        Customer customer = customerService.findOneByUsername(username);
+        if (  null == customer) {
+            log.error("Customer with username {} not found.", username);
+            return  ResponseEntity.notFound().build();
+        }
+        return  ResponseEntity.ok(customer);
+    }
+
     // -------------------Create a Customer-------------------------------------------
 
     @PostMapping
