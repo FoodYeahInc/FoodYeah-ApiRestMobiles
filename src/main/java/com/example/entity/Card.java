@@ -45,7 +45,7 @@ public class Card {
     @ApiModelProperty(value="El cvv o cvc de la tarjeta", dataType="byte",  example="1234", position=5)
     @NotNull(message = "El cvc o cvv de la tarjeta no deber ser vacio")
     @Column(name = "card_cvi",nullable = false)
-    private byte cardCvi;
+    private int cardCvi;
 
     @ApiModelProperty(value="Fecha de expiracion de la tarjeta", dataType="String",  example="1234", position=6)
     @NotEmpty(message = "El cvc o cvv de la tarjeta no deber ser vacio")
