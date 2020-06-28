@@ -58,8 +58,9 @@ public class CardServiceImpl implements CardService {
         cardDB.setCustomer(card.getCustomer());
         cardDB.setCardNumber(card.getCardNumber());
         cardDB.setCardCvi(card.getCardCvi());
-        card.setCardOwnerName(customer.getCustomerName());
+        cardDB.setCardOwnerName(customer.getCustomerName());
         cardDB.setCardExpireDate(card.getCardExpireDate());
+        cardDB.setCardMoney(card.getCardMoney());
         cardDB.setState("UPDATED");
         return cardRepository.save(cardDB);
     }
