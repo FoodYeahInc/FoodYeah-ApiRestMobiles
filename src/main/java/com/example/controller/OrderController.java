@@ -67,13 +67,13 @@ public class OrderController {
     }
 
     @PutMapping("/{orderId}/card={cardId}")
-    public ResponseEntity<Order> orderDelivered(@PathVariable("cardId") long cardId, @PathVariable("orderId") long orderId) {
+    public ResponseEntity<Order> orderDelivered(@PathVariable("cardId") long cardId,
+            @PathVariable("orderId") long orderId) {
         log.info("Fetching Orders with Id {}", orderId);
         Order order = orderService.getOrder(orderId);
         String orderState = order.getState();
 
-        if (!orderState.equals("CREATED"))
-        {
+        if (!orderState.equals("CREATED")) {
             log.error("La orden a pagar ya se ha entregado o ha sido eliminado", orderId);
             return ResponseEntity.noContent().build();
         }
@@ -87,8 +87,7 @@ public class OrderController {
                 return ResponseEntity.notFound().build();
             }
             return ResponseEntity.ok(order);
-        }
-        else {
+        } else {
             log.error("No hay suficiente dinero en la tarjeta para pagar la orden", orderId);
             return ResponseEntity.noContent().build();
         }

@@ -23,11 +23,12 @@ public class CustomerCategoryController {
     private CustomerCategoryService customerCategoryService;
 
     @GetMapping
-    public ResponseEntity<List<CustomerCategory>> listAllCustomerCategories(@RequestParam(name = "customerCategoryId", required = false) Long customerCategoryId){
+    public ResponseEntity<List<CustomerCategory>> listAllCustomerCategories(
+            @RequestParam(name = "customerCategoryId", required = false) Long customerCategoryId) {
         List<CustomerCategory> customerCategories = new ArrayList<>();
-        if(null == customerCategoryId){
+        if (null == customerCategoryId) {
             customerCategories = customerCategoryService.findCustomerCategoryAll();
-            if(customerCategories.isEmpty()){
+            if (customerCategories.isEmpty()) {
                 return ResponseEntity.noContent().build();
             }
         }
@@ -35,34 +36,36 @@ public class CustomerCategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerCategory> getCustomerCategory(@PathVariable("id") long id){
+    public ResponseEntity<CustomerCategory> getCustomerCategory(@PathVariable("id") long id) {
         log.info("Fetching CustomerCategory with Id {}", id);
 
         CustomerCategory customerCategory = customerCategoryService.getCustomerCategory(id);
 
-        if( null == customerCategory){
-            log.error("CustomerCategory with id {} not found.",id);
+        if (null == customerCategory) {
+            log.error("CustomerCategory with id {} not found.", id);
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(customerCategory);
     }
 
     @PostMapping
-    public ResponseEntity<CustomerCategory> createCustomerCategory(@Valid @RequestBody CustomerCategory customerCategory, BindingResult result){
+    public ResponseEntity<CustomerCategory> createCustomerCategory(
+            @Valid @RequestBody CustomerCategory customerCategory, BindingResult result) {
         log.info("Creating CustomerCategory : {}", customerCategory);
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Message.formatMessage(result));
         }
         CustomerCategory customerCategoryDB = customerCategoryService.createCustomerCategory(customerCategory);
-        return  ResponseEntity.status(HttpStatus.CREATED).body(customerCategoryDB);
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerCategoryDB);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CustomerCategory> updateCustomerCategory(@PathVariable("id") long id, @RequestBody CustomerCategory customerCategory){
-        log.info("Updating CustomerCategory with id {}",id);
+    public ResponseEntity<CustomerCategory> updateCustomerCategory(@PathVariable("id") long id,
+            @RequestBody CustomerCategory customerCategory) {
+        log.info("Updating CustomerCategory with id {}", id);
         CustomerCategory currentCustomerCategory = customerCategoryService.getCustomerCategory(id);
-        if(null == currentCustomerCategory){
-            log.error("Unable to update CustomerCategory with id {} not founded",id);
+        if (null == currentCustomerCategory) {
+            log.error("Unable to update CustomerCategory with id {} not founded", id);
             return ResponseEntity.notFound().build();
         }
         customerCategory.setId(id);
@@ -70,15 +73,15 @@ public class CustomerCategoryController {
         return ResponseEntity.ok(currentCustomerCategory);
     }
 
-    @DeleteMapping(value =  "/{id}")
-    public ResponseEntity<CustomerCategory> deleteCustomerCategory(@PathVariable("id") long id){
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<CustomerCategory> deleteCustomerCategory(@PathVariable("id") long id) {
         log.info("Fetching & Deleting CustomerCategory with id {}", id);
         CustomerCategory customerCategory = customerCategoryService.getCustomerCategory(id);
-        if(null == customerCategory){
+        if (null == customerCategory) {
             log.error("Unable to delete. CustomerCategory with id {} not found.", id);
             return ResponseEntity.notFound().build();
         }
         customerCategory = customerCategoryService.deleteCustomerCategory(id);
-        return  ResponseEntity.ok(customerCategory);
+        return ResponseEntity.ok(customerCategory);
     }
 }
