@@ -33,9 +33,9 @@ public class Card {
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Customer customer;
 
-    @ApiModelProperty(value="Numero de la tarjeta", dataType="int",  example="1234567898765432", position=3)
+    @ApiModelProperty(value="Numero de la tarjeta", dataType="string",  example="1234567898765432", position=3)
     @NotNull(message = "El numero de la tarjeta no deber ser vacio")
-    private int cardNumber;
+    private String cardNumber;
 
     @ApiModelProperty(value="Tipo de tarjeta", dataType="boolean",  example="1", position=4)
     @NotNull(message = "El tipo de tarjeta no deber ser vacio")
