@@ -14,9 +14,11 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     @Autowired
     public static OrderDetailRepository orderDetailRepository;
-    public OrderDetailServiceImpl(OrderDetailRepository orderDetailRepository){
-        this.orderDetailRepository=orderDetailRepository;
+
+    public OrderDetailServiceImpl(OrderDetailRepository orderDetailRepository) {
+        this.orderDetailRepository = orderDetailRepository;
     }
+
     @Override
     public List<OrderDetail> findOrderDetailAll() {
         return orderDetailRepository.findAll();
@@ -37,22 +39,22 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     @Override
     public OrderDetail updateOrderDetail(OrderDetail orderDetail) {
-        OrderDetail orderDetailDB=this.getOrderDetail(orderDetail.getId());
-        if(orderDetailDB==null){
+        OrderDetail orderDetailDB = this.getOrderDetail(orderDetail.getId());
+        if (orderDetailDB == null) {
             return null;
         }
         orderDetailDB.setOrder(orderDetail.getOrder());
         orderDetailDB.setProduct(orderDetail.getProduct());
         orderDetailDB.setQuantity(orderDetail.getQuantity());
         orderDetailDB.setState("UPDATED");
-        orderDetailDB=orderDetailRepository.save(orderDetail);
+        orderDetailDB = orderDetailRepository.save(orderDetail);
         return orderDetailDB;
     }
 
     @Override
     public OrderDetail deleteOrderDetail(Long id) {
-        OrderDetail orderDetailDB=this.getOrderDetail(id);
-        if(orderDetailDB==null){
+        OrderDetail orderDetailDB = this.getOrderDetail(id);
+        if (orderDetailDB == null) {
             return null;
         }
         orderDetailDB.setState("DELETED");
