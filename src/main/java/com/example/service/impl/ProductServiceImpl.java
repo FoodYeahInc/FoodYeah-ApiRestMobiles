@@ -48,23 +48,27 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> platosALaCartaByCategoryId(long id) { return productRepository.platosALaCartaByCategory(id);    }
+    public List<Product> platosALaCartaByCategoryId(long id) {
+        return productRepository.platosALaCartaByCategory(id);
+    }
 
     @Override
-    public List<Product> platosALaCarta() { return productRepository.platosALaCarta();    }
+    public List<Product> platosALaCarta() {
+        return productRepository.platosALaCarta();
+    }
 
     @Transactional
     @Override
     public Product createProduct(Product product) {
 
         product.setState("CREATED");
-     return  productRepository.save(product);
+        return productRepository.save(product);
     }
 
     @Override
     public Product updateProduct(Product product) {
-        Product productDB=getProduct(product.getId());
-        if(productDB==null){
+        Product productDB = getProduct(product.getId());
+        if (productDB == null) {
             return null;
         }
         productDB.setCategory(product.getCategory());
@@ -79,8 +83,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product deleteProduct(Long id) {
-        Product productDB=getProduct(id);
-        if(productDB==null){
+        Product productDB = getProduct(id);
+        if (productDB == null) {
             return null;
         }
         productDB.setState("DELETE");

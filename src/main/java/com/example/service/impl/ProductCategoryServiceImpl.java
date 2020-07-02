@@ -12,6 +12,7 @@ import java.util.List;
 public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Autowired
     private ProductCategoryRepository productCategoryRepository;
+
     @Override
     public List<ProductCategory> findProduct_CategoryAll() {
         return productCategoryRepository.findAll();
@@ -25,13 +26,13 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Override
     public ProductCategory createProduct_Category(ProductCategory product_category) {
         product_category.setState("CREATED");
-      return productCategoryRepository.save(product_category);
+        return productCategoryRepository.save(product_category);
     }
 
     @Override
     public ProductCategory updateProduct_Category(ProductCategory product_category) {
-        ProductCategory product_categoryDB=this.getProduct_Category(product_category.getId());
-        if(product_categoryDB==null){
+        ProductCategory product_categoryDB = this.getProduct_Category(product_category.getId());
+        if (product_categoryDB == null) {
             return null;
         }
         product_categoryDB.setProductCategoryName(product_category.getProductCategoryName());
@@ -43,8 +44,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public ProductCategory deleteProduct_Category(Long id) {
-        ProductCategory product_categoryDB=this.getProduct_Category(id);
-        if(product_categoryDB==null){
+        ProductCategory product_categoryDB = this.getProduct_Category(id);
+        if (product_categoryDB == null) {
             return null;
         }
         product_categoryDB.setState("DELETED");

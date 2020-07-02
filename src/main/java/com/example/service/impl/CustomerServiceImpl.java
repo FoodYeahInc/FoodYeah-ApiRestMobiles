@@ -18,8 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 @Service
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
@@ -28,12 +26,12 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Customer customer = customerRepository.findOneByUsername(username);
-        if (customer == null){
+        if (customer == null) {
             throw new UsernameNotFoundException(String.format("Usuario no existe", username));
         }
-        //en spring security los roles tienen nombre de GrantedAuthority
+        // en spring security los roles tienen nombre de GrantedAuthority
         List<GrantedAuthority> authorities = new ArrayList<>();
-        customer.getCustomerRoles().forEach(role->{
+        customer.getCustomerRoles().forEach(role -> {
             authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
         });
 
@@ -66,18 +64,17 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer createCustomer(Customer customer) {
         Long UserRole;
 
-        if(customer.getUsername().startsWith("a")){
+        if (customer.getUsername().startsWith("a")) {
             UserRole = new Long(1);
-        }
-        else{
-            UserRole= new Long(2);
+        } else {
+            UserRole = new Long(2);
         }
 
         customer.setState("CREATED");
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         Customer guardar = customerRepository.save(customer);
-        customerRepository.assignRole(guardar.getId(),UserRole);
+        customerRepository.assignRole(guardar.getId(), UserRole);
         return guardar;
     }
 

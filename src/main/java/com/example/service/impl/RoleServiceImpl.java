@@ -27,13 +27,13 @@ public class RoleServiceImpl implements RoleService {
     public Role createRole(Role customer_category) {
 
         customer_category.setState("CREATED");
-return RoleRepository.save(customer_category);
+        return RoleRepository.save(customer_category);
     }
 
     @Override
     public Role updateRole(Role customer_category) {
-        Role RoleDB=this.getRole(customer_category.getId());
-        if(RoleDB==null){
+        Role RoleDB = this.getRole(customer_category.getId());
+        if (RoleDB == null) {
             return null;
         }
         RoleDB.setRoleName(customer_category.getRoleName());
@@ -44,8 +44,8 @@ return RoleRepository.save(customer_category);
 
     @Override
     public Role deleteRole(Long id) {
-        Role RoleDB=this.getRole(id);
-        if(RoleDB==null){
+        Role RoleDB = this.getRole(id);
+        if (RoleDB == null) {
             return null;
         }
         RoleDB.setState("DELETED");
