@@ -37,8 +37,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         product_categoryDB.setProductCategoryName(product_category.getProductCategoryName());
         product_categoryDB.setProductCategoryDescription(product_category.getProductCategoryDescription());
         product_categoryDB.setState("UPDATED");
-        product_categoryDB=productCategoryRepository.save(product_category);
-        return product_categoryDB;
+        return productCategoryRepository.save(product_categoryDB);
+
     }
 
     @Override
